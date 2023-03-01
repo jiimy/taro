@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/taro/static/css/main.073c9b0a.css",
+    "main.js": "/taro/static/js/main.ee0e271b.js",
+    "static/js/787.07731570.chunk.js": "/taro/static/js/787.07731570.chunk.js",
+    "static/media/logo.svg": "/taro/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/taro/index.html",
+    "main.073c9b0a.css.map": "/taro/static/css/main.073c9b0a.css.map",
+    "main.ee0e271b.js.map": "/taro/static/js/main.ee0e271b.js.map",
+    "787.07731570.chunk.js.map": "/taro/static/js/787.07731570.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.ee0e271b.js"
+  ]
+}
