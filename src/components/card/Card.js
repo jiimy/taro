@@ -18,20 +18,17 @@ const Card = () => {
     }
     // TODO: 첫 렌더링시 리버싱
     for (let i = 0; i <= data.length; i++) {
-      setReverse(reverse => [...reverse, rand(0, 1)]);
+      setReverse((reverse) => [...reverse, rand(0, 1)]);
     }
   }, []);
-  
-  // TODO: 선택한 것만 보여지게 
+
+  // TODO: 선택한 것만 보여지게
 
   const onSelect = (key) => {
-    // setSelect((select) => select + 1);
-    // if (select < 4) {
-    // }
-    setSelect((select) => [...select, key]);
-    console.log('reverse', reverse);
-    // console.log("dd", select);
-    // console.log("reverse", data);
+    if (select.length <= 2) {
+      setSelect((select) => [...select, key]);
+      console.log("dd", select);
+    }
   };
 
   return (
@@ -40,20 +37,24 @@ const Card = () => {
         return (
           <div
             key={i}
-            className={classNames("flip is-active", {
-              'is-reverse': reverse[i] === 1
+            className={classNames("flip", {
+              "is-reverse": reverse[i] === 1,
+              "is-active": select.indexOf(item.index) < 0,
             })}
             onClick={() => onSelect(item.index)}
           >
             <div className="card">
               <div className="front">
-                <img src={backimg} alt="" />
-              </div>
-              <div className="back">
                 <img src={item.url} alt={item.name} />
               </div>
+              <div className="back">
+                <img src={backimg} alt="" />
+              </div>
             </div>
-            <p>{item.name}</p>
+            {
+              select.indexOf(item.index) >= 0 && 
+              <p>{item.name}</p>
+            }
           </div>
         );
       })}
