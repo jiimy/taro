@@ -1,16 +1,38 @@
 {
   "files": {
-    "main.css": "/taro/static/css/main.073c9b0a.css",
-    "main.js": "/taro/static/js/main.ee0e271b.js",
+    "main.css": "/taro/static/css/main.1b5da4b6.css",
+    "main.js": "/taro/static/js/main.73836145.js",
     "static/js/787.07731570.chunk.js": "/taro/static/js/787.07731570.chunk.js",
-    "static/media/logo.svg": "/taro/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "static/media/20.png": "/taro/static/media/20.492c9ebb4a7c23d7df84.png",
+    "static/media/21.png": "/taro/static/media/21.b8e916a07a8c2b853620.png",
+    "static/media/05.png": "/taro/static/media/05.dfbcfe98cff9ddc9f391.png",
+    "static/media/06.png": "/taro/static/media/06.cd8a9f72b4f0d3cc9808.png",
+    "static/media/04.png": "/taro/static/media/04.977ebdd9d8299d7a3110.png",
+    "static/media/14.png": "/taro/static/media/14.4e0707479d1e31a9dc3b.png",
+    "static/media/10.png": "/taro/static/media/10.cb6b2943bc9364643837.png",
+    "static/media/11.png": "/taro/static/media/11.2a1182854b484f02130d.png",
+    "static/media/19.png": "/taro/static/media/19.21850a0debd781c349f0.png",
+    "static/media/02.png": "/taro/static/media/02.14728f0b74cc5268f458.png",
+    "static/media/13.png": "/taro/static/media/13.6444d2e3b88eca9f0ed1.png",
+    "static/media/17.png": "/taro/static/media/17.a263044a0f8d61b8c654.png",
+    "static/media/03.png": "/taro/static/media/03.f3d11e732b131f4321f9.png",
+    "static/media/18.png": "/taro/static/media/18.d34c3bfe8e166d565e27.png",
+    "static/media/07.png": "/taro/static/media/07.de2f0ea80ca99d7372d6.png",
+    "static/media/15.png": "/taro/static/media/15.4f8fa81e8026c5748d4f.png",
+    "static/media/09.png": "/taro/static/media/09.41296fc2a151643b72ae.png",
+    "static/media/16.png": "/taro/static/media/16.5af52c8cd9a4d8f4dc46.png",
+    "static/media/00.png": "/taro/static/media/00.7654284dc10279d516ba.png",
+    "static/media/12.png": "/taro/static/media/12.b60899ff2654c4ac5b19.png",
+    "static/media/01.png": "/taro/static/media/01.ad87a3cf2fd18f9df664.png",
+    "static/media/08.png": "/taro/static/media/08.85967eb7199116d0b83b.png",
+    "static/media/back.png": "/taro/static/media/back.65fd0859eb3019820608.png",
     "index.html": "/taro/index.html",
-    "main.073c9b0a.css.map": "/taro/static/css/main.073c9b0a.css.map",
-    "main.ee0e271b.js.map": "/taro/static/js/main.ee0e271b.js.map",
+    "main.1b5da4b6.css.map": "/taro/static/css/main.1b5da4b6.css.map",
+    "main.73836145.js.map": "/taro/static/js/main.73836145.js.map",
     "787.07731570.chunk.js.map": "/taro/static/js/787.07731570.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.ee0e271b.js"
+    "static/css/main.1b5da4b6.css",
+    "static/js/main.73836145.js"
   ]
 }
