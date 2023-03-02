@@ -17,17 +17,18 @@ const Card = () => {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     // TODO: 첫 렌더링시 리버싱
-    for (let i = 0; i <= data.length; i++) {
+    // d
+    for (let i = 0; i <= CardData.length; i++) {
       setReverse((reverse) => [...reverse, rand(0, 1)]);
     }
   }, []);
 
-  // TODO: 선택한 것만 보여지게
+  // console.log('reverse', reverse);
 
+  // TODO: 선택한 것만 보여지게
   const onSelect = (key) => {
     if (select.length <= 2) {
       setSelect((select) => [...select, key]);
-      console.log("dd", select);
     }
   };
 
