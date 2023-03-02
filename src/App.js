@@ -1,5 +1,5 @@
 import { Route, Link, Routes } from "react-router-dom";
-import "./App.css";
+import './assets/style/index.scss';
 import Main from "./page/main/Main";
 
 function App() {
