@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Link, Routes } from "react-router-dom";
+import './header.scss';
 
 const Header = () => {
   return (
