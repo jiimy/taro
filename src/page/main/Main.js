@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Card from '../../components/card/Card'
-import InfoModal from '../../components/portalModal/modal/InfoModal';
+import InfoModal from '../../components/portalModal/infomodal/InfoModal';
 import './main.scss';
 
 const Main = () => {

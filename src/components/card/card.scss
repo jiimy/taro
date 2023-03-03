@@ -1,12 +1,25 @@
 .cards {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-
+  &.is-allselect {
+    .is-active {
+      transition: none!important;
+      transform: none!important;
+    }
+    .card {
+      cursor: auto;
+    }
+  }
 .flip {
     // width: 200px;
     height: 240px;
     position: relative;
     perspective: 1100px;
+    transition: none;
+    &.is-active:hover {
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+    }
     p {
       text-align: center;
     }
