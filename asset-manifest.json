@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/taro/static/css/main.1b5da4b6.css",
-    "main.js": "/taro/static/js/main.1fe1bc05.js",
+    "main.css": "/taro/static/css/main.1fee804c.css",
+    "main.js": "/taro/static/js/main.73228ef9.js",
     "static/js/787.07731570.chunk.js": "/taro/static/js/787.07731570.chunk.js",
     "static/media/20.png": "/taro/static/media/20.492c9ebb4a7c23d7df84.png",
     "static/media/21.png": "/taro/static/media/21.b8e916a07a8c2b853620.png",
@@ -25,14 +25,14 @@
     "static/media/12.png": "/taro/static/media/12.b60899ff2654c4ac5b19.png",
     "static/media/01.png": "/taro/static/media/01.ad87a3cf2fd18f9df664.png",
     "static/media/08.png": "/taro/static/media/08.85967eb7199116d0b83b.png",
-    "static/media/back.png": "/taro/static/media/back.65fd0859eb3019820608.png",
+    "static/media/back.png": "/taro/static/media/back.be86d08c53a3ab9cc2ba.png",
     "index.html": "/taro/index.html",
-    "main.1b5da4b6.css.map": "/taro/static/css/main.1b5da4b6.css.map",
-    "main.1fe1bc05.js.map": "/taro/static/js/main.1fe1bc05.js.map",
+    "main.1fee804c.css.map": "/taro/static/css/main.1fee804c.css.map",
+    "main.73228ef9.js.map": "/taro/static/js/main.73228ef9.js.map",
     "787.07731570.chunk.js.map": "/taro/static/js/787.07731570.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1b5da4b6.css",
-    "static/js/main.1fe1bc05.js"
+    "static/css/main.1fee804c.css",
+    "static/js/main.73228ef9.js"
   ]
 }
