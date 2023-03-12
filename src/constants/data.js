@@ -1,31 +1,32 @@
-import image00 from '../../assets/image/00.png';
-import image01 from '../../assets/image/01.png';
-import image02 from '../../assets/image/02.png';
-import image03 from '../../assets/image/03.png';
-import image04 from '../../assets/image/04.png';
-import image05 from '../../assets/image/05.png';
-import image06 from '../../assets/image/06.png';
-import image07 from '../../assets/image/07.png';
-import image08 from '../../assets/image/08.png';
-import image09 from '../../assets/image/09.png';
-import image10 from '../../assets/image/10.png';
-import image11 from '../../assets/image/11.png';
-import image12 from '../../assets/image/12.png';
-import image13 from '../../assets/image/13.png';
-import image14 from '../../assets/image/14.png';
-import image15 from '../../assets/image/15.png';
-import image16 from '../../assets/image/16.png';
-import image17 from '../../assets/image/17.png';
-import image18 from '../../assets/image/18.png';
-import image19 from '../../assets/image/19.png';
-import image20 from '../../assets/image/20.png';
-import image21 from '../../assets/image/21.png';
+import image00 from '../assets/image/00.png';
+import image01 from '../assets/image/01.png';
+import image02 from '../assets/image/02.png';
+import image03 from '../assets/image/03.png';
+import image04 from '../assets/image/04.png';
+import image05 from '../assets/image/05.png';
+import image06 from '../assets/image/06.png';
+import image07 from '../assets/image/07.png';
+import image08 from '../assets/image/08.png';
+import image09 from '../assets/image/09.png';
+import image10 from '../assets/image/10.png';
+import image11 from '../assets/image/11.png';
+import image12 from '../assets/image/12.png';
+import image13 from '../assets/image/13.png';
+import image14 from '../assets/image/14.png';
+import image15 from '../assets/image/15.png';
+import image16 from '../assets/image/16.png';
+import image17 from '../assets/image/17.png';
+import image18 from '../assets/image/18.png';
+import image19 from '../assets/image/19.png';
+import image20 from '../assets/image/20.png';
+import image21 from '../assets/image/21.png';
 
 const CardData = [
   {
     index: 0,
     name: "The fool(바보)",
     url: `${image00}`,
+    content: '시작, '
   },
   {
     index: 1,

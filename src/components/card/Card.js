@@ -2,15 +2,19 @@ import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import backimg from "../../assets/image/back.png";
 import LoadingModal from "../portalModal/loadingmodal/LoadingModal";
+import { useDispatch } from "react-redux";
 import "./card.scss";
-import CardData from "./data.js";
+import CardData from "../../constants/data.js";
+import { cardState } from "../../redux/card";
 
 const Card = () => {
-  const [reverse, setReverse] = useState([]);
-  const [select, setSelect] = useState([]);
-  const [data, setData] = useState([]);
-  const [delayData, setDelayData] = useState([]);
-  const [delayView, setDelayView] = useState(false);
+  const dispatch = useDispatch();
+  const [reverse, setReverse] = useState([]); // 리버스 배열
+  const [reversing, setReversing] = useState([]); // 리버스 배열중 선택된 것
+  const [select, setSelect] = useState([]); // 선택한것
+  const [data, setData] = useState([]); // 받아온 데이터
+  const [delayData, setDelayData] = useState([]); // 데이터 딜레이로 넣기
+  const [delayView, setDelayView] = useState(false); // 딜레이로 보여주기?
   const [loadingModal, setLoadingModal] = useState(true);
 
   useEffect(() => {
@@ -32,7 +36,12 @@ const Card = () => {
   }, []);
 
   useEffect(() => {
-    // TODO: 새로운 배열에 shuffle된 data를 순차적으로 넣어야 함.
+    if (select.length === 3) {
+      dispatch(cardState({ selectedCard: select, reverseCard: reversing, selectState: true }));
+    }
+  }, [dispatch, select, reversing]);
+
+  useEffect(() => {
     let n = 0;
     const timeout = setTimeout(() => {
       setDelayView(true);
@@ -44,20 +53,23 @@ const Card = () => {
         }
       }, 40);
       return () => clearInterval(interval);
-    }, 4000);
+    }, 100);
     return () => clearTimeout(timeout);
   }, [data]);
 
   // 선택한 것만 보여지게
-  const onSelect = (key) => {
+  const onSelect = (key, i) => {
     if (select.length <= 2) {
       setSelect((select) => [...select, key]);
+      setReversing((reversing) => [...reversing, reverse[i]]);
     }
   };
 
   return (
     <div>
+      {/*
       {loadingModal && <LoadingModal />}
+     */}
       {delayView && (
         <div
           className={classNames("cards", {
@@ -72,8 +84,8 @@ const Card = () => {
                   "is-reverse": reverse[i] === 1,
                   "is-active": select.indexOf(item.index) < 0,
                 })}
-                onClick={() => onSelect(item.index)}
-              >
+                onClick={() => onSelect(item.index, i)}
+                >
                 <div className="card">
                   <div className="front">
                     <img src={item.url} alt={item.name} />
@@ -82,10 +94,6 @@ const Card = () => {
                     <img src={backimg} alt="" />
                   </div>
                 </div>
-                {/*
-            //  NOTE: 보여주는게 더 이상함
-            {select.indexOf(item.index) >= 0 && <p>{item.name}</p>}
-           */}
               </div>
             );
           })}

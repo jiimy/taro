@@ -7,21 +7,27 @@ const Header = () => {
     <header>
       <ul>
         <li>
+          <Link to="/">메인</Link>
+        </li>
+        <li>
           <Link to="/one">원 오라클</Link>
         </li>
         <li>
           <Link to="/three">쓰리 카드</Link>
         </li>
         <li className="disabled">
-          <Link to="/three">양자택일</Link>
+          <Link to="/alternatively">양자택일</Link>
         </li>
         <li className="disabled">
-          <Link to="/three">헥사그램</Link>
+          <Link to="/hexagram">헥사그램</Link>
         </li>
         <li className="disabled">
-          <Link to="/three">호스슈</Link>
+          <Link to="/celtic-cross">켈틱 크로스</Link>
         </li>
-        <li>
+        <li className="disabled">
+          <Link to="/horseshoe">호스슈</Link>
+        </li>
+        <li className="disabled">
           <Link to="/three">호로스코프</Link>
         </li>
       </ul>
