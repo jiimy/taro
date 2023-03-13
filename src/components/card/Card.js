@@ -2,10 +2,10 @@ import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import backimg from "../../assets/image/back.png";
 import LoadingModal from "../portalModal/loadingmodal/LoadingModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./card.scss";
 import CardData from "../../constants/data.js";
-import { cardState } from "../../redux/card";
+import { cardSelect } from "../../redux/card";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ const Card = () => {
   const [delayData, setDelayData] = useState([]); // 데이터 딜레이로 넣기
   const [delayView, setDelayView] = useState(false); // 딜레이로 보여주기?
   const [loadingModal, setLoadingModal] = useState(true);
+  const card = useSelector((state) => state.card.value);
 
   useEffect(() => {
     // 섞기
@@ -36,10 +37,16 @@ const Card = () => {
   }, []);
 
   useEffect(() => {
-    if (select.length === 3) {
-      dispatch(cardState({ selectedCard: select, reverseCard: reversing, selectState: true }));
+    if (select.length === card.cardCount) {
+      dispatch(
+        cardSelect({
+          selectedCard: select,
+          reverseCard: reversing,
+          selectState: true,
+        })
+      );
     }
-  }, [dispatch, select, reversing]);
+  }, [dispatch, select, reversing, card]);
 
   useEffect(() => {
     let n = 0;
@@ -53,13 +60,13 @@ const Card = () => {
         }
       }, 40);
       return () => clearInterval(interval);
-    }, 100);
+    }, 2000);
     return () => clearTimeout(timeout);
   }, [data]);
 
   // 선택한 것만 보여지게
   const onSelect = (key, i) => {
-    if (select.length <= 2) {
+    if (select.length < card.cardCount) {
       setSelect((select) => [...select, key]);
       setReversing((reversing) => [...reversing, reverse[i]]);
     }
@@ -67,37 +74,47 @@ const Card = () => {
 
   return (
     <div>
-      {/*
       {loadingModal && <LoadingModal />}
-     */}
+      {/*
+       */}
       {delayView && (
-        <div
-          className={classNames("cards", {
-            "is-allselect": select.length > 2,
-          })}
-        >
-          {delayData?.map((item, i) => {
-            return (
-              <div
-                key={i}
-                className={classNames("flip", {
-                  "is-reverse": reverse[i] === 1,
-                  "is-active": select.indexOf(item.index) < 0,
-                })}
-                onClick={() => onSelect(item.index, i)}
+        <>
+          <h4>
+            {card.cardCount - select.length !== 0 && (
+              <>카드를 {card.cardCount - select.length}개 골라주세요.</>
+            )}
+            {card.cardCount - select.length === 0 && (
+              <>하단의 해석풀이 버튼을 눌러 의미를 해석해보세요.</>
+            )}
+          </h4>
+          <div
+            className={classNames("cards", {
+              "is-allselect": select.length > card.cardCount - 1,
+            })}
+          >
+            {delayData?.map((item, i) => {
+              return (
+                <div
+                  key={i}
+                  className={classNames("flip", {
+                    "is-reverse": reverse[i] === 1,
+                    "is-active": select.indexOf(item.index) < 0,
+                  })}
+                  onClick={() => onSelect(item.index, i)}
                 >
-                <div className="card">
-                  <div className="front">
-                    <img src={item.url} alt={item.name} />
-                  </div>
-                  <div className="back">
-                    <img src={backimg} alt="" />
+                  <div className="card">
+                    <div className="front">
+                      <img src={item.url} alt={item.name} />
+                    </div>
+                    <div className="back">
+                      <img src={backimg} alt="" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </>
       )}
     </div>
   );

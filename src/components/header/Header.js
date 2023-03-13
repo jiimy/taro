@@ -7,13 +7,13 @@ const Header = () => {
     <header>
       <ul>
         <li>
-          <Link to="/">메인</Link>
+          <Link to="/taro">메인</Link>
         </li>
         <li>
-          <Link to="/one">원 오라클</Link>
+          <Link to="/taro/one">원 오라클</Link>
         </li>
         <li>
-          <Link to="/three">쓰리 카드</Link>
+          <Link to="/taro/three">쓰리 카드</Link>
         </li>
         <li className="disabled">
           <Link to="/alternatively">양자택일</Link>

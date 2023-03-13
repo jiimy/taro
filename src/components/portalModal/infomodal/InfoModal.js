@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
-import classnames from 'classnames';
+import classnames from "classnames";
 import ModalFrame from "../ModalFrame";
 import { useSelector } from "react-redux";
 import CardData from "../../../constants/data";
 import "./infomodal.scss";
 
+const MapRender = ({ data, type }) => {
+  return (
+    <div>
+      {type === "list" && (
+        <ul>
+          <li>asdfasdf</li>
+        </ul>
+      )}
+    </div>
+  );
+};
+
 const InfoModal = ({ setOnModal }) => {
   const card = useSelector((state) => state.card.value);
   const [cardData, setCardData] = useState();
-  const [tab, setTab] = useState('love');
+  const [tab, setTab] = useState("love");
 
   useEffect(() => {
     setCardData([]);
@@ -20,7 +32,8 @@ const InfoModal = ({ setOnModal }) => {
     }
   }, [card]);
 
-  console.log('card', card);
+  // console.log('dd', CardData[0].content);
+  console.log("card", card.selectedCard);
 
   return (
     <ModalFrame setOnModal={setOnModal} classname="info-modal" isDim>
@@ -35,15 +48,22 @@ const InfoModal = ({ setOnModal }) => {
               })}
             >
               <img src={item[2]} alt={item[1]} />
-
             </li>
           ))}
       </ul>
 
+      <MapRender data={cardData} type={"list"} />
+
       <div className="tab">
-        <div className="tab-nav">연애</div>
-        <div className="tab-nav">일</div>
-        <div className="tab-nav">대인관계</div>
+        <div className="tab-nav" onClick={() => setTab(0)}>
+          연애
+        </div>
+        <div className="tab-nav" onClick={() => setTab(1)}>
+          일
+        </div>
+        <div className="tab-nav" onClick={() => setTab(2)}>
+          대인관계
+        </div>
       </div>
       <div className="content">테스트</div>
     </ModalFrame>

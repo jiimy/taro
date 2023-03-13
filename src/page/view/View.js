@@ -1,25 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../../components/card/Card";
 import InfoModal from "../../components/portalModal/infomodal/InfoModal";
-import "./view.scss";
 import history from "../../hooks/useHistory";
+import "./view.scss";
+import { init, cardCount } from "../../redux/card";
 
-import { useSelector } from "react-redux";
-
-const View = () => {
+const View = ({ count }) => {
   const card = useSelector((state) => state.card.value);
   const [onModal, setOnModal] = useState(false);
-  const [block, setBlock] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(cardCount({ cardCount: count }));
+
     let unblock;
-    if (block) {
+    if (card.selectState) {
       unblock = history.block((tx) => {
         let url = tx.location.pathname;
-        console.log("url: ", url);
-        if (window.confirm(`Are you sure you want to go to "${url}"?`)) {
-          unblock();
-          tx.retry();
+        let locate = window.location.href.split("/")[4];
+        if (url !== `/taro/${locate}`) {
+          if (
+            window.confirm(
+              `다른 페이지로 이동하시면 선택한 카드가 초기화 됩니다. \n이동하시겠습니까?`
+            )
+          ) {
+            unblock();
+            tx.retry();
+            dispatch(cardCount({ cardCount: 0 }));
+            dispatch(init());
+          }
         }
       });
     }
@@ -29,19 +39,14 @@ const View = () => {
         unblock();
       }
     };
-  }, [block]);
-
-  const clickHandler = () => setBlock((block) => !block);
+  }, [card.selectState, dispatch, count]);
 
   return (
     <div className="main-page">
-      <button type="button" onClick={clickHandler}>
-        Toggle Block {block ? "bb" : "nonbb"}
-      </button>
-      <Card />
+      {card.cardCount !== 0 && <Card />}
       {card.selectState && (
         <div className="btn-wrap">
-          <button onClick={() => setOnModal(true)}>결과보기</button>
+          <button onClick={() => setOnModal(true)}>해석풀이</button>
         </div>
       )}
       {onModal && <InfoModal setOnModal={() => setOnModal()} />}

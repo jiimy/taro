@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const type = 'one' | 'three'
 // const initialStateValue = { name: "", age: 0, email: "" };
 const initialStateValue = {
-    isSuffle: false,
+    isSuffle: false, // 
     spreadType: '',
     cardCount: 0,
     selectState: false, // 모든 카드 선택완료
@@ -19,6 +19,17 @@ export const cardSlice = createSlice({
     cardState: (state, action) => {
       state.value = action.payload;
     },
+    cardCount: (state, action) => {
+      state.value.cardCount = action.payload.cardCount;
+    },
+    cardSelect: (state, action) => {
+      state.value.selectedCard = action.payload.selectedCard;
+      state.value.reverseCard = action.payload.reverseCard;
+      state.value.selectState = action.payload.selectState;
+
+      // state.name = action.payload.name;
+      // state.age = action.payload.age;
+    },
     // 카드 타입: 스프레드타입, 카드 선택 갯수
     cardType: (state, action) => {
       // state.value = action.payload;
@@ -32,6 +43,6 @@ export const cardSlice = createSlice({
   },
 });
 
-export const { cardState, init } = cardSlice.actions;
+export const { cardSelect, init, cardCount } = cardSlice.actions;
 export default cardSlice.reducer;
 

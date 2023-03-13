@@ -9,9 +9,21 @@
   }
   ul {
     display: flex;
+    max-width: 400px;
+    gap: 12px;
+    justify-content: center;
     .is-reverse {
       img {
         transform: rotate(180deg);
+      }
+    }
+    li {
+      flex: 1 1 0 auto;
+      max-width: 125px;
+      height: 220px;
+      img {
+        width: 100%;
+        height: 100%;
       }
     }
   }
