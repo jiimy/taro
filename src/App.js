@@ -24,8 +24,8 @@ function App() {
       <Header />
       <Routes>
         <Route path={HOME} element={<Main />} />
-        <Route path={`${HOME}/one`} element={<View count={1}/>} />
-        <Route path={`${HOME}/three`} element={<View count={3}/>} />
+        <Route path={`${HOME}/one`} element={<View spreadType={1} />} />
+        <Route path={`${HOME}/three`} element={<View spreadType={2} />} />
       </Routes>
     </div>
   );

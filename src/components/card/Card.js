@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./card.scss";
 import CardData from "../../constants/data.js";
 import { cardSelect } from "../../redux/card";
+import { infoModalState } from "../../redux/modal";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -15,8 +16,9 @@ const Card = () => {
   const [data, setData] = useState([]); // 받아온 데이터
   const [delayData, setDelayData] = useState([]); // 데이터 딜레이로 넣기
   const [delayView, setDelayView] = useState(false); // 딜레이로 보여주기?
-  const [loadingModal, setLoadingModal] = useState(true);
+  // const [loadingModal, setLoadingModal] = useState(true);
   const card = useSelector((state) => state.card.value);
+  const modal = useSelector((state) => state.modal.value);
 
   useEffect(() => {
     // 섞기
@@ -34,7 +36,13 @@ const Card = () => {
     for (let i = 0; i <= CardData.length; i++) {
       setReverse((reverse) => [...reverse, rand(0, 1)]);
     }
-  }, []);
+    // setLoadingModal(true);
+    dispatch(
+      infoModalState({
+        infoModal: true
+      })
+    );
+  }, [dispatch]);
 
   useEffect(() => {
     if (select.length === card.cardCount) {
@@ -52,7 +60,12 @@ const Card = () => {
     let n = 0;
     const timeout = setTimeout(() => {
       setDelayView(true);
-      setLoadingModal(false);
+      // setLoadingModal(false);
+      dispatch(
+        infoModalState({
+          infoModal: false,
+        })
+      );
       const interval = setInterval(() => {
         n += 1;
         if (n < data.length) {
@@ -62,7 +75,7 @@ const Card = () => {
       return () => clearInterval(interval);
     }, 2000);
     return () => clearTimeout(timeout);
-  }, [data]);
+  }, [data, dispatch]);
 
   // 선택한 것만 보여지게
   const onSelect = (key, i) => {
@@ -74,7 +87,7 @@ const Card = () => {
 
   return (
     <div>
-      {loadingModal && <LoadingModal />}
+      {modal.infoModal && <LoadingModal />}
       {/*
        */}
       {delayView && (
