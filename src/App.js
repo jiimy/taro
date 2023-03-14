@@ -1,24 +1,13 @@
-import { useEffect, useState } from "react";
-import { useLocation, Route, Link, Routes } from "react-router-dom";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./assets/style/index.scss";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import history from "./hooks/useHistory";
-import { HOME } from "./constants/router";
-import { cardState, init } from "./redux/card";
 import Header from "./components/header/Header";
+import { HOME } from "./constants/router";
 import Main from "./page/main/Main";
 import View from "./page/view/View";
-import Login from "./page/Login";
 
 function App() {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const card = useSelector((state) => state.card.value);
-  const [locate, setLocate] = useState("");
-
-  // console.log('cardcount', card)
-
   return (
     <div className="App">
       <Header />
@@ -32,5 +21,3 @@ function App() {
 }
 
 export default App;
-
-

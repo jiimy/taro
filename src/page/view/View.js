@@ -2,15 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../../components/card/Card";
 import InfoModal from "../../components/portalModal/infomodal/InfoModal";
-import history from "../../hooks/useHistory";
-import "./view.scss";
-import { init, cardCount } from "../../redux/card";
-import { infoModalState } from "../../redux/modal";
 import useCount from "../../hooks/useCount";
+import history from "../../hooks/useHistory";
+import { cardCount, init } from "../../redux/card";
+import "./view.scss";
 
 const View = ({ spreadType }) => {
   const card = useSelector((state) => state.card.value);
-  const modal = useSelector((state) => state.modal.value);
   const [onModal, setOnModal] = useState(false);
   const dispatch = useDispatch();
 

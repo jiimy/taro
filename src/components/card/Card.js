@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import backimg from "../../assets/image/back.png";
-import LoadingModal from "../portalModal/loadingmodal/LoadingModal";
 import { useDispatch, useSelector } from "react-redux";
-import "./card.scss";
+import backimg from "../../assets/image/back.png";
 import CardData from "../../constants/data.js";
 import { cardSelect } from "../../redux/card";
 import { infoModalState } from "../../redux/modal";
+import LoadingModal from "../portalModal/loadingmodal/LoadingModal";
+import "./card.scss";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const Card = () => {
   const [data, setData] = useState([]); // 받아온 데이터
   const [delayData, setDelayData] = useState([]); // 데이터 딜레이로 넣기
   const [delayView, setDelayView] = useState(false); // 딜레이로 보여주기?
-  // const [loadingModal, setLoadingModal] = useState(true);
   const card = useSelector((state) => state.card.value);
   const modal = useSelector((state) => state.modal.value);
 
@@ -36,7 +35,6 @@ const Card = () => {
     for (let i = 0; i <= CardData.length; i++) {
       setReverse((reverse) => [...reverse, rand(0, 1)]);
     }
-    // setLoadingModal(true);
     dispatch(
       infoModalState({
         infoModal: true
@@ -60,7 +58,6 @@ const Card = () => {
     let n = 0;
     const timeout = setTimeout(() => {
       setDelayView(true);
-      // setLoadingModal(false);
       dispatch(
         infoModalState({
           infoModal: false,
