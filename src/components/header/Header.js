@@ -1,10 +1,23 @@
-import React from "react";
+import classNames from "classnames";
+import React, { useEffect, useState } from "react";
 import { Route, Link, Routes } from "react-router-dom";
-import './header.scss';
+import "./header.scss";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
+  const [headerType, setHeaderType] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if(location.pathname === '/taro') {
+      setHeaderType('fixed');
+    }
+  }, [location]);
+
   return (
-    <header>
+    <header className={classNames("", {
+      'is-fixed': headerType === 'fixed'
+    })}>
       <ul>
         <li>
           <Link to="/taro">메인</Link>

@@ -47,5 +47,11 @@
 
   .content {
     margin-top: 8px;
+    .tab-content {
+      display: none;
+      &.is-select {
+        display: block;
+      }
+    }
   }
 }

@@ -1,8 +1,13 @@
 header {
+  &.is-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: white;
+  }
   ul {
     display: flex;
     padding: 20px;
-    margin-bottom: 40px;
     gap: 36px;
     .disabled {
       color: #aeaeae;

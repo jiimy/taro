@@ -1,22 +1,10 @@
-import React, { useEffect, useState } from "react";
 import classnames from "classnames";
-import ModalFrame from "../ModalFrame";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import CardData from "../../../constants/data";
-import "./infomodal.scss";
 import { TabData } from "../../../constants/CardSolveType";
-
-const MapRender = ({ data, type }) => {
-  return (
-    <div>
-      {type === "list" && (
-        <ul>
-          <li>asdfasdf</li>
-        </ul>
-      )}
-    </div>
-  );
-};
+import CardData from "../../../constants/data";
+import ModalFrame from "../ModalFrame";
+import "./infomodal.scss";
 
 const InfoModal = ({ setOnModal, spreadType }) => {
   const card = useSelector((state) => state.card.value);
@@ -33,20 +21,16 @@ const InfoModal = ({ setOnModal, spreadType }) => {
     }
   }, [card]);
 
-  // console.log('dd', CardData[0].content['readingType1'][0]);
-  // console.log("card", card.selectedCard);
-  // console.log('cc', TabData[0][spreadType], spreadType)
-
-  console.log("cardreverse", card.reverseCard, card.selectedCard);
-  // console.log('dd', CardData[0].content.readingType[1]['upper']);
-  console.log('map',
-    card.selectedCard.map((selectedCard, i) => (
-      card.reverseCard.map((reverseCard, index) => (
-        CardData[selectedCard].content.readingType[spreadType][reverseCard === 0 ? 'upper' : 'reverse'][0]
-      ))
-    ))
-  )
-  // CardData[i]
+  const select = card.selectedCard.map((selectedCard, i) => {
+    return CardData[selectedCard].content.readingType[spreadType];
+  });
+  const reverse = card.reverseCard.map((reverseCard, i) => {
+    return select[i][reverseCard === 0 ? "upper" : "lower"];
+  });
+  const mean = card.selectedCard.map((selectedCard, i) => {
+    return CardData[selectedCard].content.mean;
+  });
+  let strArr = Object.keys(reverse).map((item, index) => reverse[item]);
 
   return (
     <ModalFrame setOnModal={setOnModal} classname="info-modal" isDim>
@@ -65,34 +49,40 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           ))}
       </ul>
 
-      <MapRender data={cardData} type={"list"} />
+      <div className="mean">{
+        reverse.length === 1 ?
+        mean : 
+        mean[tab]
+      }</div>
 
       <div className="tab">
-        {
-          TabData[0][spreadType].map((item, i) => (
-            <div
-              className={classnames("tab-nav", {
-                "is-select": tab === i,
-              })}
-              key={i}
-              onClick={() => setTab(i)}
-            >{item}</div>
-          ))
-        }
+        {TabData[0][spreadType].map((item, i) => (
+          <div
+            className={classnames("tab-nav", {
+              "is-select": tab === i,
+            })}
+            key={i}
+            onClick={() => setTab(i)}
+          >
+            {item}
+          </div>
+        ))}
       </div>
       <div className="content">
-        {/* console.log('dd', CardData[0].content.readingType1[0]); */}
-        {card.selectedCard.map((selectedCard, i) => (
-          card.reverseCard.map((reverseCard, index) => (
-            <div>{CardData[selectedCard].content.readingType[spreadType][reverseCard === 0 ? 'upper' : 'reverse'][tab]}</div>
-          ))
-        ))}
-        {/* {tab === 0 && (
-          <div>
-          </div>
-        )}
-        {tab === 1 && <div>11</div>}
-        {tab === 2 && <div>22</div>} */}
+        {/* NOTE: 카드 한개 선택인경우 */}
+        {reverse.length === 1 && <div>{strArr[0][tab]}</div>}
+        {/* NOTE: 2개 이상 선택인경우 */}
+        {reverse.length >= 2 &&
+          reverse.map((item, index) => (
+            <div
+              key={index}
+              className={classnames("tab-content", {
+                "is-select": tab === index,
+              })}
+            >
+              {item[index]}
+            </div>
+          ))}
       </div>
     </ModalFrame>
   );
