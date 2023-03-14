@@ -28,9 +28,13 @@ const InfoModal = ({ setOnModal, spreadType }) => {
     return select[i][reverseCard === 0 ? "upper" : "lower"];
   });
   const mean = card.selectedCard.map((selectedCard, i) => {
-    return CardData[selectedCard].content.mean;
+    return CardData[selectedCard].content[
+      card.reverseCard[i] === 0 ? "mean" : "reverseMean"
+    ];
   });
   let strArr = Object.keys(reverse).map((item, index) => reverse[item]);
+
+  // console.log('dd', mean, 'cc:', card.reverseCard);
 
   return (
     <ModalFrame setOnModal={setOnModal} classname="info-modal" isDim>
@@ -49,11 +53,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           ))}
       </ul>
 
-      <div className="mean">{
-        reverse.length === 1 ?
-        mean : 
-        mean[tab]
-      }</div>
+      <div className="mean">{reverse.length === 1 ? mean : mean[tab]}</div>
 
       <div className="tab">
         {TabData[0][spreadType].map((item, i) => (

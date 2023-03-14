@@ -28,6 +28,7 @@ const CardData = [
     url: `${image00}`,
     content: {
       mean: "무엇이든 될 수 있는 자유를 나타냅니다. 가벼운 옷차림에 작은 봇짐 하나 든 여행자가 있습니다. 바로 앞에는 길이 없어 개가 위험을 충고하지만 알아채지 못합니다. 그럼에도 '어떻게든 되겠지' 라며 낙관하고 있는 상태를 의미하는 카드입니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -62,6 +63,7 @@ const CardData = [
     url: `${image01}`,
     content: {
       mean: "자신감에 가득찬 표정으로 자신의 능력을 어필하는 마법사입니다. 테이블 위에는 우주를 구성하는 네 가지 요소인 완드, 펜타클, 소드, 컵이 놓여있습니다. 이 모든 것을 자유자재로 다루는 힘을 지닌 마법사는 무엇이든 창조해낼 수 있습니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -96,6 +98,7 @@ const CardData = [
     url: `${image02}`,
     content: {
       mean: "여사제는 왕관을 물려받은 신비한 여성으로 손에 든 성전에서 생각이 깊고 총명한 인물임을 알 수 있습니다. 고결한 여사제는 풍부한 정신성을 의미합니다",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -130,6 +133,7 @@ const CardData = [
     url: `${image03}`,
     content: {
       mean: "풍요로운 대자연 속에 여유롭제 자리한 여황제가 있습니다. 풍만한 그녀의 못브은 임신한 여인을 연상케 합니다. 끊임없이 이어지는 생명의 사이클과 그곳에서 만들어지는 풍요로움을 상징하는 카드입니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -164,6 +168,7 @@ const CardData = [
     url: `${image04}`,
     content: {
       mean: "갑옷과 투구를 갖추고 왕좌에 당당히 앉은 그는 한나라의 주인이다. 사람이 모이면 그곳에 사회가 생겨나고 통솔하는 사람이 필요해진다. 왕좌의 양 모양 심볼은 양자리를 상징하며 야심, 투쟁심, 리더십이 왕성함을 나타냅니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -198,6 +203,7 @@ const CardData = [
     url: `${image05}`,
     content: {
       mean: "삼위일체를 뜻하는 삼중 십자가를 들고 두 명의 신부에게 축복을 내리는 교황입니다. 그는 인간에게 도덕을 가르쳐 올바른 길을 가도록 이끌어줍니다. 굳건한 신뢰와 정신적인 의지를 의미합니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -232,6 +238,7 @@ const CardData = [
     url: `${image06}`,
     content: {
       mean: "에덴동산에서 남녀가 천사의 축복을 받고 있습니다. 전라의 무방비 상태는 두려울 것이 없음을 드러냅니다. 남녀는 점차 서로의 존재에 매료되어 육체적으로 깊이 엮이게 됩니다. 하지만 이곳은 에덴입니다. 뱀의 유혹으로 금지된 열매에 손을 뻗고 낙원에서 쫒겨나는 일화가 있습니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -266,6 +273,7 @@ const CardData = [
     url: `${image07}`,
     content: {
       mean: "나아가야 할 길을 응시하고 있는 전사의 모습이 그려진 전차입니다. 서로 다른 흑백의 스핑크스들은 엉뚱한 방향으로 달려 나갈지도 모릅니다. 이런 전차를 고삐도 없이 컨트롤하기 위해서는 강한 의지와 힘이 필요합니다. 이 카드는 그 강인함을 상징합니다. ",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -300,6 +308,7 @@ const CardData = [
     url: `${image08}`,
     content: {
       mean: "가냘픈 여성이 사자의 턱에 손을 대고 있습니다. 여성의 머리 위에 그려진 무한대는 무한한 사랑을 의미합니다. 사랑으로 마음을 통하면 상대를 움직일 수 있습니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -334,6 +343,7 @@ const CardData = [
     url: `${image09}`,
     content: {
       mean: "회색 외투로 몸을 감싸고 홀로 서 있는 노인이 있습니다. 타인의 시선을 피하려는 듯 얼굴을 옆으로 돌리고 있습니다. 속세로부터 떨어져 고독하게 내면세계와 마주하려 합니다. 손에 든 랜턴 속에는 진리로 인도해주는 별이 빛나고 있습니다. 중요한 것은 겉모습이 아니라 인간의 본질이라는 점을 나타내는 카드입니다.",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -368,6 +378,7 @@ const CardData = [
     url: `${image10}`,
     content: {
       mean: "천천히 회전하는 커다란 수레바퀴는 운명을 의미합니다. 주위에는 시간을 멈추는 소드를 든 스핑크스, 생사를 관장하는 아누비스, 뱀이 있습니다. 자신의 힘으로는 어찌할 도리가 없는 운명으로 인해 생각지도 못한 일이 일어나는 상황을 암시합니다. ",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -402,6 +413,7 @@ const CardData = [
     url: `${image11}`,
     content: {
       mean: "중성적인 모습의 사람이 중앙에 앉아있습니다. 그녀는 재판관이며 왼손에 든 천칭으로 죄의 무게를 달고 오른손의 검으로 심판을 내립니다. 감정에 이끌리지 않고 원인과 결ㄹ과를 객관적으로 들여다보면서 공정한 판단을 내리는 냉정함을 암시합니다. ",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -436,6 +448,7 @@ const CardData = [
     url: `${image12}`,
     content: {
       mean: "고된 자세에도 불구하고 표정은 매우 온화하며 머리에는 후광이 빛나고 있습니다. 꼼짝 못하는 상태로 있기 때문에 오히려 사고가 또렷해지고 머릿속이 점점 맑아지는 것인지도 모릅니다. 아무것도 할 수 없는 상황에서 자신의 진심. 반성의 시간을 갖는 것의 소중함을 의미하는 카드입니다. ",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -470,6 +483,7 @@ const CardData = [
     url: `${image13}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -504,6 +518,7 @@ const CardData = [
     url: `${image14}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -538,6 +553,7 @@ const CardData = [
     url: `${image15}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -572,6 +588,7 @@ const CardData = [
     url: `${image16}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -606,6 +623,7 @@ const CardData = [
     url: `${image17}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -640,6 +658,7 @@ const CardData = [
     url: `${image18}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -674,6 +693,7 @@ const CardData = [
     url: `${image19}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -708,6 +728,7 @@ const CardData = [
     url: `${image20}`,
     content: {
       mean: "시작",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
@@ -742,6 +763,7 @@ const CardData = [
     url: `${image21}`,
     content: {
       mean: "완성",
+      reverseMean: "역방향",
       readingType: {
         1: {
           upper: {
