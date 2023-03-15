@@ -91,7 +91,7 @@ const Card = () => {
         <>
           <h4>
             {card.cardCount - select.length !== 0 && (
-              <>카드를 {card.cardCount - select.length}개 골라주세요.</>
+              <>카드를 {card.cardCount - select.length}장 골라주세요.</>
             )}
             {card.cardCount - select.length === 0 && (
               <>하단의 해석풀이 버튼을 눌러 의미를 해석해보세요.</>

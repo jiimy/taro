@@ -15,8 +15,8 @@ const Header = () => {
   }, [location]);
 
   return (
-    <header className={classNames("", {
-      'is-fixed': headerType === 'fixed'
+    <header className={classNames("is-fixed", {
+      // 'is-fixed': headerType === 'fixed'
     })}>
       <ul>
         <li>
