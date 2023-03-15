@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./assets/style/index.scss";
 import Header from "./components/header/Header";
 import { HOME } from "./constants/router";
