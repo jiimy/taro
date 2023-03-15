@@ -29,16 +29,34 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   });
   const mean = card.selectedCard.map((selectedCard, i) => {
     return CardData[selectedCard].content[
-      card.reverseCard[i] === 0 ? "mean" : "reverseMean"
+      // card.reverseCard[i] === 0 ? "mean" : "lowerMean"
+      "mean"
     ];
   });
-  let strArr = Object.keys(reverse).map((item, index) => reverse[item]);
 
-  // console.log('dd', mean, 'cc:', card.reverseCard);
+
+  // NOTE: 추후에 정방향과 역방향 의미를 추가할때 사용할 const 
+  const stateMean = card.selectedCard.map((selectedCard, i) => {
+    return CardData[selectedCard].content[
+      card.reverseCard[i] === 0 ? "lowerMean" : "lowerMean"
+    ];
+  });
+
+  let strArr = Object.keys(reverse).map((item, index) => reverse[item]);
 
   return (
     <ModalFrame setOnModal={setOnModal} classname="info-modal" isDim>
       <div className="title">선택된 카드</div>
+      {reverse.length !== 1 && (
+        <div className="card-position">
+          <strong>각 위치에 있는 카드의 의미</strong>
+          <div className="desc">
+            {TabData[0][spreadType].map((item, i) => (
+              <div className="item">{item}</div>
+            ))}
+          </div>
+        </div>
+      )}
       <ul>
         {cardData &&
           cardData.map((item, i) => (
@@ -53,12 +71,19 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           ))}
       </ul>
 
-      <div className="mean">{reverse.length === 1 ? mean : mean[tab]}</div>
+      <div className="mean-area">
+        <div className="mean">{reverse.length === 1 ? mean : mean[tab]}</div>
+        <div className="state-men">
+          {
+            // reverse.length === 1 ? stateMean : stateMean[tab]
+          }
+        </div>
+      </div>
 
-      <div className="tab">
+      <div className="tag">
         {TabData[0][spreadType].map((item, i) => (
           <div
-            className={classnames("tab-nav", {
+            className={classnames("tag-item", {
               "is-select": tab === i,
             })}
             key={i}
