@@ -66,6 +66,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
                 "is-reverse": card.reverseCard[i] === 1,
                 'is-focus': reverse.length === 1 ? false : tab === i
               })}
+              onClick={() => setTab(i)}
             >
               <img src={item[2]} alt={item[1]} />
             </li>
