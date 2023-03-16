@@ -1,3 +1,5 @@
+@import 'assets/style/function.scss';
+
 header {
   &.is-fixed {
     position: fixed;
@@ -9,6 +11,9 @@ header {
     display: flex;
     padding: 20px;
     gap: 36px;
+    @include media-mo {
+      padding: 0;
+    }
     .disabled {
       color: #aeaeae;
       pointer-events: none;

@@ -36,8 +36,9 @@ const Main = () => {
           <div className="example">
             <span>질문 예시</span>
             <ul>
-              <li>22</li>
-              <li>111</li>
+              <li>- 현재 당신의 운세는?</li>
+              <li>- 새로운 일을 제안받았다. 어떻게 답해야 할까?</li>
+              <li>- 친구와 싸웠다. 화해하려면 어떻게 해야 할까?</li>
             </ul>
           </div>
         </dd>

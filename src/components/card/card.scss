@@ -1,6 +1,9 @@
+
+
 .cards {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
+  
   &.is-allselect {
     .is-active {
       transition: none!important;
