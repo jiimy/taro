@@ -33,16 +33,19 @@ export const cardSlice = createSlice({
     // 카드 타입: 스프레드타입, 카드 선택 갯수
     cardType: (state, action) => {
       // state.value = action.payload;
-      state.spreadType = action.payload.spreadType;
-      state.cardCount = action.payload.cardCount;
+      state.value.spreadType = action.payload.spreadType;
+      state.value.cardCount = action.payload.cardCount;
     },
     // 다른 스프레드 방식일 때 초기화
     init: (state) => {
       state.value = initialStateValue;
+      // state.value.cardCount = action.payload.cardCount;
+      // state.value.reverseCard = action.payload.reverseCard;
+      // state.value.selectState = action.payload.selectState;
     },
   },
 });
 
-export const { cardSelect, init, cardCount } = cardSlice.actions;
+export const { cardSelect, init, cardCount, cardType } = cardSlice.actions;
 export default cardSlice.reducer;
 

@@ -29,7 +29,6 @@ const View = ({ spreadType }) => {
               `다른 페이지로 이동하시면 선택한 카드가 초기화 됩니다. \n이동하시겠습니까?`
             )
           ) {
-            dispatch(cardCount({ cardCount: 0 }));
             unblock();
             tx.retry();
             dispatch(init());

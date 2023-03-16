@@ -46,12 +46,12 @@ const Card = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (select.length === card.cardCount) {
+    if (select.length <= card.cardCount) {
       dispatch(
         cardSelect({
           selectedCard: select,
           reverseCard: reversing,
-          selectState: true,
+          selectState: select.length === card.cardCount ? true : null
         })
       );
     }
@@ -85,6 +85,10 @@ const Card = () => {
       setReversing((reversing) => [...reversing, reverse[i]]);
     }
   };
+
+  console.log("cc", card.selectedCard);
+  // console.log("cc11", card.selectedCard.indexOf());
+
 
   return (
     <div>

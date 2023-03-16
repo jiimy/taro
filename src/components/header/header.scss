@@ -80,4 +80,13 @@ header {
       pointer-events: none;
     }
   }
+  .refresh {
+    position: absolute;
+    height: fit-content;
+    top: 0;
+    bottom: 0;
+    right: 24px;
+    margin: auto;
+    cursor: pointer;
+  }
 }

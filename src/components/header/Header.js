@@ -3,10 +3,22 @@ import React, { useEffect, useState } from "react";
 import { Route, Link, Routes } from "react-router-dom";
 import "./header.scss";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { init, cardType } from "../../redux/card";
 
 const Header = () => {
   const [mobileHeaderState, setMobileHeaderState] = useState(false);
   const location = useLocation();
+  const dispatch = useDispatch();
+  const card = useSelector((state) => state.card.value);
+
+  
+  const refreshBtn = () => {
+    if (location.pathname.includes("/three")) {
+      dispatch(init({ cardCount: 3, selectedCard: null, reverseCard : null}));
+      console.log('he', card)
+    }
+  };
 
   useEffect(() => {
     setMobileHeaderState(false);
@@ -58,6 +70,9 @@ const Header = () => {
             <Link to="/three">호로스코프</Link>
           </li>
         </ul>
+        <div className="refresh" onClick={refreshBtn}>
+          다시 고르기
+        </div>
       </header>
     </>
   );
