@@ -18,6 +18,19 @@
         transform: rotate(180deg);
       }
     }
+    .is-focus {
+      position: relative;
+      &:after {
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 4px solid #f00;
+        box-sizing: border-box;
+        content:'';
+      }
+    }
     li {
       flex: 1 1 0 auto;
       max-width: 125px;
