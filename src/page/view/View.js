@@ -14,6 +14,8 @@ const View = ({ spreadType }) => {
 
   const sType = useCount(spreadType);
 
+  // console.log('cc', card)
+
   useEffect(() => {
     let unblock;
     dispatch(cardCount({ cardCount: sType }));
@@ -21,7 +23,7 @@ const View = ({ spreadType }) => {
       unblock = history.block((tx) => {
         let url = tx.location.pathname;
         let locate = window.location.href.split("/")[4];
-        if (url !== `/taro/${locate}`) {
+        if (url !== `/taro/${locate}` || card.selectedCard.length > 0) {
           if (
             window.confirm(
               `다른 페이지로 이동하시면 선택한 카드가 초기화 됩니다. \n이동하시겠습니까?`
@@ -41,7 +43,7 @@ const View = ({ spreadType }) => {
         unblock();
       }
     };
-  }, [card.selectState, dispatch, spreadType, sType]);
+  }, [card.selectState, dispatch, spreadType, sType, card.selectedCard]);
 
   return (
     <div className="main-page">

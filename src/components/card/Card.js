@@ -1,11 +1,12 @@
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import backimg from "../../assets/image/back.png";
 import CardData from "../../constants/data.js";
-import { cardSelect } from "../../redux/card";
+import { cardSelect, init } from "../../redux/card";
 import { infoModalState } from "../../redux/modal";
 import LoadingModal from "../portalModal/loadingmodal/LoadingModal";
+import { useLocation } from "react-router-dom";
 import "./card.scss";
 
 const Card = () => {
@@ -18,6 +19,8 @@ const Card = () => {
   const [delayView, setDelayView] = useState(false); // 딜레이로 보여주기?
   const card = useSelector((state) => state.card.value);
   const modal = useSelector((state) => state.modal.value);
+
+  // console.log("cc", card);
 
   useEffect(() => {
     // 섞기
@@ -37,7 +40,7 @@ const Card = () => {
     }
     dispatch(
       infoModalState({
-        infoModal: true
+        infoModal: true,
       })
     );
   }, [dispatch]);
@@ -76,7 +79,8 @@ const Card = () => {
 
   // 선택한 것만 보여지게
   const onSelect = (key, i) => {
-    if (select.length < card.cardCount) {
+    if (select.length < card.cardCount && select.includes(key) === false) {
+      // 선택한게 n개보다 적을때
       setSelect((select) => [...select, key]);
       setReversing((reversing) => [...reversing, reverse[i]]);
     }
@@ -84,7 +88,7 @@ const Card = () => {
 
   return (
     <div>
-      {modal.infoModal && <LoadingModal />}
+    {modal.infoModal && <LoadingModal />}
       {/*
        */}
       {delayView && (

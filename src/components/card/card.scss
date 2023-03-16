@@ -1,9 +1,11 @@
-
+@import 'assets/style/function.scss';
 
 .cards {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
-  
+  @include media-mo {
+    grid-template-columns: repeat(3, 1fr);
+  }
   &.is-allselect {
     .is-active {
       transition: none!important;
@@ -19,6 +21,9 @@
     position: relative;
     perspective: 1100px;
     transition: none;
+    @include media-mo {
+      @include vw-convert(height, 240px, mo);
+    }
     &.is-active:hover {
       transform: translateY(-20px);
       transition: all 0.3s ease;
@@ -34,6 +39,9 @@
     position: relative;
     transition: .4s;
     transform-style: preserve-3d;
+    @include media-mo {
+      @include vw-convert(height, 220px, mo);
+    }
   }
 
   .front,
@@ -66,6 +74,10 @@
       position: absolute;
       width: 120px;
       height: 200px;
+      @include media-mo {
+        @include vw-convert(width, 140px, mo);
+        @include vw-convert(height, 220px, mo);
+      }
     }
   }
 }
