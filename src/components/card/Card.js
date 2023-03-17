@@ -86,10 +86,6 @@ const Card = () => {
     }
   };
 
-  console.log("cc", card.selectedCard);
-  // console.log("cc11", card.selectedCard.indexOf());
-
-
   return (
     <div>
     {modal.infoModal && <LoadingModal />}

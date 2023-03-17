@@ -12,11 +12,17 @@ const Header = () => {
   const dispatch = useDispatch();
   const card = useSelector((state) => state.card.value);
 
-  
   const refreshBtn = () => {
-    if (location.pathname.includes("/three")) {
-      dispatch(init({ cardCount: 3, selectedCard: null, reverseCard : null}));
-      console.log('he', card)
+    // console.log(";cc;,", Object.keys(router));
+    switch (window.location.href.split("/taro")[1]) {
+      case "/one":
+        dispatch(init({ cardCount: 1, selectedCard: null, reverseCard: null }));
+        break;
+      case "/three":
+        dispatch(init({ cardCount: 3, selectedCard: null, reverseCard: null }));
+        break;
+      default:
+        break;
     }
   };
 
