@@ -67,12 +67,20 @@
 
   .mean-area {
     margin-top: 10px;
+    strong {
+      display: block;
+    }
+    .state-mean {
+      margin-top: 16px;
+    }
   }
 
   .tag {
     display: flex;
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
     // justify-content: space-around;
     .tag-item {
       display: inline-block;

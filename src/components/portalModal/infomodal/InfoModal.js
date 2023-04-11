@@ -38,7 +38,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   // NOTE: 추후에 정방향과 역방향 의미를 추가할때 사용할 const 
   const stateMean = card.selectedCard.map((selectedCard, i) => {
     return CardData[selectedCard].content[
-      card.reverseCard[i] === 0 ? "lowerMean" : "lowerMean"
+      card.reverseCard[i] === 0 ? "upperMean" : "lowerMean"
     ];
   });
 
@@ -64,7 +64,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
               key={i}
               className={classnames("", {
                 "is-reverse": card.reverseCard[i] === 1,
-                'is-focus': reverse.length === 1 ? false : tab === i
+                "is-focus": reverse.length === 1 ? false : tab === i,
               })}
               onClick={() => setTab(i)}
             >
@@ -74,11 +74,13 @@ const InfoModal = ({ setOnModal, spreadType }) => {
       </ul>
 
       <div className="mean-area">
-        <div className="mean">{reverse.length === 1 ? mean : mean[tab]}</div>
-        <div className="state-men">
-          {
-            // reverse.length === 1 ? stateMean : stateMean[tab]
-          }
+        <div className="mean">
+          <strong>카드의 기본 의미</strong>
+          {reverse.length === 1 ? mean : mean[tab]}
+        </div>
+        <div className="state-mean">
+          <strong>{card.reverseCard[tab] === 1 ? '역방향' : '정방향'}</strong>
+          {reverse.length === 1 ? stateMean : stateMean[tab]}
         </div>
       </div>
 
