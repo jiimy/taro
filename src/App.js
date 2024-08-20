@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import { HOME } from "./constants/router";
 import Main from "./page/main/Main";
 import View from "./page/view/View";
+import AllCardPage from "page/allCard/AllCardPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path={HOME} element={<Main />} />
         <Route path={`${HOME}/one`} element={<View spreadType={1} />} />
         <Route path={`${HOME}/three`} element={<View spreadType={2} />} />
+        <Route path={`${HOME}/all-card`} element={<AllCardPage/>}/>
       </Routes>
     </div>
   );

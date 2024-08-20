@@ -75,6 +75,9 @@ const Header = () => {
           <li className="disabled">
             <Link to="/three">호로스코프</Link>
           </li>
+          <li className="">
+            <Link to="/taro/all-card">모든 카드 설명 보기</Link>
+          </li>
         </ul>
         <div className="refresh" onClick={refreshBtn}>
           다시 고르기

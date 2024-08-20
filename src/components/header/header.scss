@@ -72,6 +72,9 @@ header {
       &.is-show {
         display: flex;
         height: 100vh;
+        + .refresh {
+          position: relative;
+        }
       }
     }
 
