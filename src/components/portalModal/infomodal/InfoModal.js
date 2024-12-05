@@ -5,11 +5,14 @@ import { TabData } from "../../../constants/CardSolveType";
 import CardData from "../../../constants/data";
 import ModalFrame from "../ModalFrame";
 import "./infomodal.scss";
+import classNames from "classnames";
+import Test from "components/test/Test";
 
 const InfoModal = ({ setOnModal, spreadType }) => {
   const card = useSelector((state) => state.card.value);
   const [cardData, setCardData] = useState();
   const [tab, setTab] = useState(0);
+  const [tab1, setTab1] = useState(1);
 
   useEffect(() => {
     setCardData([]);
@@ -34,8 +37,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
     ];
   });
 
-
-  // NOTE: 추후에 정방향과 역방향 의미를 추가할때 사용할 const 
+  // NOTE: 추후에 정방향과 역방향 의미를 추가할때 사용할 const
   const stateMean = card.selectedCard.map((selectedCard, i) => {
     return CardData[selectedCard].content[
       card.reverseCard[i] === 0 ? "upperMean" : "lowerMean"
@@ -47,76 +49,104 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   return (
     <ModalFrame setOnModal={setOnModal} classname="info-modal" isDim>
       <div className="title">선택된 카드</div>
-      {reverse.length !== 1 && (
-        <div className="card-position">
-          <strong>각 위치에 있는 카드의 의미</strong>
-          <div className="desc">
+      <div className="tab">
+        <span
+          className={classNames("tab-item", {
+            is_select: tab1 === 1,
+          })}
+          onClick={() => setTab1(1)}
+        >
+          기본 해석
+        </span>
+        <span
+          className={classNames("tab-item", {
+            is_select: tab1 === 2,
+          })}
+          onClick={() => setTab1(2)}
+        >
+          GPT 해석
+        </span>
+      </div>
+
+      {tab1 === 1 && (
+        <>
+          {reverse.length !== 1 && (
+            <div className="card-position">
+              <strong>각 위치에 있는 카드의 의미</strong>
+              <div className="desc">
+                {TabData[0][spreadType].map((item, i) => (
+                  <div className="item">{item}</div>
+                ))}
+              </div>
+            </div>
+          )}
+          <ul>
+            {cardData &&
+              cardData.map((item, i) => (
+                <li
+                  key={i}
+                  className={classnames("", {
+                    "is-reverse": card.reverseCard[i] === 1,
+                    "is-focus": reverse.length === 1 ? false : tab === i,
+                  })}
+                  onClick={() => setTab(i)}
+                >
+                  <img src={item[2]} alt={item[1]} />
+                </li>
+              ))}
+          </ul>
+
+          <div className="mean-area">
+            <div className="mean">
+              <strong>카드의 기본 의미</strong>
+              {reverse.length === 1 ? mean : mean[tab]}
+            </div>
+            <div className="state-mean">
+              <strong>
+                {card.reverseCard[tab] === 1 ? "역방향" : "정방향"}
+              </strong>
+              {reverse.length === 1 ? stateMean : stateMean[tab]}
+            </div>
+          </div>
+
+          <div className="tag">
             {TabData[0][spreadType].map((item, i) => (
-              <div className="item">{item}</div>
+              <div
+                className={classnames("tag-item", {
+                  "is-select": tab === i,
+                })}
+                key={i}
+                onClick={() => setTab(i)}
+              >
+                {item}
+              </div>
             ))}
           </div>
+          <div className="content">
+            {/* NOTE: 카드 한개 선택인경우 */}
+            {reverse.length === 1 && <div>{strArr[0][tab]}</div>}
+            {/* NOTE: 2개 이상 선택인경우 */}
+            {reverse.length >= 2 &&
+              reverse.map((item, index) => (
+                <div
+                  key={index}
+                  className={classnames("tab-content", {
+                    "is-select": tab === index,
+                  })}
+                >
+                  {item[index]}
+                </div>
+              ))}
+          </div>
+        </>
+      )}
+      {tab1 === 2 && (
+        <div>
+          <strong>전체 해석</strong>
+          {/* 여기에 gtp 해석 넣기 */}
+          <Test />
         </div>
       )}
-      <ul>
-        {cardData &&
-          cardData.map((item, i) => (
-            <li
-              key={i}
-              className={classnames("", {
-                "is-reverse": card.reverseCard[i] === 1,
-                "is-focus": reverse.length === 1 ? false : tab === i,
-              })}
-              onClick={() => setTab(i)}
-            >
-              <img src={item[2]} alt={item[1]} />
-            </li>
-          ))}
-      </ul>
-
-      <div className="mean-area">
-        <div className="mean">
-          <strong>카드의 기본 의미</strong>
-          {reverse.length === 1 ? mean : mean[tab]}
-        </div>
-        <div className="state-mean">
-          <strong>{card.reverseCard[tab] === 1 ? '역방향' : '정방향'}</strong>
-          {reverse.length === 1 ? stateMean : stateMean[tab]}
-        </div>
-      </div>
-
-      <div className="tag">
-        {TabData[0][spreadType].map((item, i) => (
-          <div
-            className={classnames("tag-item", {
-              "is-select": tab === i,
-            })}
-            key={i}
-            onClick={() => setTab(i)}
-          >
-            {item}
-          </div>
-        ))}
-      </div>
-      <div className="content">
-        {/* NOTE: 카드 한개 선택인경우 */}
-        {reverse.length === 1 && <div>{strArr[0][tab]}</div>}
-        {/* NOTE: 2개 이상 선택인경우 */}
-        {reverse.length >= 2 &&
-          reverse.map((item, index) => (
-            <div
-              key={index}
-              className={classnames("tab-content", {
-                "is-select": tab === index,
-              })}
-            >
-              {item[index]}
-            </div>
-          ))}
-      </div>
-      <div>
-        <strong>전체 해석</strong>
-        {/* 여기에 gtp 해석 넣기 */}
-      </div>
     </ModalFrame>
   );
 };

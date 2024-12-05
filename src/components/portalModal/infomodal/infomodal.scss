@@ -15,6 +15,18 @@
     font-size: 20px;
     text-align: center;
   }
+  .tab {
+    display: flex;
+    width: 100%;
+    .tab-item {
+      width: 50%;
+      text-align: center;
+      cursor: pointer;
+      &.is_select {
+        border-bottom: 2px solid black;
+      }
+    }
+  }
   ul {
     display: flex;
     max-width: 400px;

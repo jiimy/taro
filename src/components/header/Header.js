@@ -5,12 +5,16 @@ import "./header.scss";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { init, cardType } from "../../redux/card";
+import { questionText } from "redux/question";
 
 const Header = () => {
   const [mobileHeaderState, setMobileHeaderState] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
   const card = useSelector((state) => state.card.value);
+  const qstn = useSelector((state) => state.question.value);
+
+  console.log("cc", qstn);
 
   const refreshBtn = () => {
     // console.log(";cc;,", Object.keys(router));
@@ -79,8 +83,16 @@ const Header = () => {
             <Link to="/taro/all-card">모든 카드 설명 보기</Link>
           </li>
         </ul>
-        <div className="refresh" onClick={refreshBtn}>
-          다시 고르기
+        <div className="header-menu">
+          <div
+            className="requestion"
+            onClick={() => dispatch(questionText(""))}
+          >
+            다시 질문하기
+          </div>
+          <div className="refresh" onClick={refreshBtn}>
+            다시 고르기
+          </div>
         </div>
       </header>
     </>

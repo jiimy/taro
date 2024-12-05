@@ -1,26 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import s from "./question.module.scss";
+import { QuestionType } from "constants/QuestionType";
+import { useDispatch } from "react-redux";
+import { questionText } from "redux/question";
+import { useNavigate } from "react-router-dom";
 
 const Question = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [text, setText] = useState();
+  const [selectedText, setSelectedText] = useState();
 
   const onChange = (e) => {
     setText(e.target.value);
   };
+
+  const onEnter = () => {
+    if (text) {
+      dispatch(questionText(text));
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      onEnter();
+    }
+  };
+
   return (
-    <div className="main-page">
-      <div className="input">
-        <input type="text" text={text} onChange={onChange} />
-        <button>아이콘</button>
-      </div>
-      {/* 태그를 나열해서 태그 선택시 예시 질문 나열해주고, 클릭시 그 지문으로 질문하게 */}
-      <div>
-        <span>연애</span>
-        <span>사업</span>
-        <span>진로</span>
-      </div>
-      <ul>
-        <li></li>
-      </ul>
+    <div className={s.search_page}>
+      <section>
+        <div className={s.input}>
+          <input
+            type="text"
+            value={text}
+            onChange={onChange}
+            placeholder="질문 입력"
+            onKeyDown={handleKeyDown}
+          />
+          <button onClick={onEnter}>아이콘</button>
+        </div>
+        <div className={s.quick_q}>빠른 질문</div>
+        <div className={s.tag}>
+          {QuestionType.map((item, index) => (
+            <span key={index} onClick={() => setSelectedText(item.text)}>
+              {item.text}
+            </span>
+          ))}
+        </div>
+        <ul>
+          {QuestionType.find((item) => item.text === selectedText)?.subText.map(
+            (subItem, index) => (
+              <li key={index} onClick={() => setText(subItem)}>
+                {subItem}
+              </li>
+            )
+          )}
+        </ul>
+      </section>
     </div>
   );
 };
