@@ -7,6 +7,15 @@
 - [v] 타로 카드 선택전 타로를 섞는 중입니다. 로딩바 나오게 하기
 - [v] 타로 선택 후 연애, 일, 대인관계 에 대한 설명들 나오게 하기
 - [ ] 계정을 이용하여 타로 선택 기록 확인하기
+- [ ] gpt api를 이용한 유순한(?) 해석
+
+-gpt api 관련 링크들
+```node
+-https://blog.deeplink.kr/?p=2835#GPT-35-Turbo
+-https://www.google.co.kr/search?q=%EB%8B%AC%EB%9F%AC+%EA%B3%84%EC%82%B0%EA%B8%B0&sca_esv=cd7e98c4db4a6188&biw=1920&bih=971&sxsrf=ADLYWIKOyGKrxWdHqhzdMza76G1kPtzzXQ%3A1733381781144&ei=lU5RZ5LDCMP21e8P6PaCwAk&ved=0ahUKEwjS4cyqhpCKAxVDe_UHHWi7AJgQ4dUDCA8&uact=5&oq=%EB%8B%AC%EB%9F%AC+%EA%B3%84%EC%82%B0%EA%B8%B0&gs_lp=Egxnd3Mtd2l6LXNlcnAiEOuLrOufrCDqs4TsgrDquLAyChAAGIAEGEYYggIyBBAAGB4yBBAAGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgFGB4yBhAAGAUYHjIGEAAYBRgeMgYQABgFGB4yBhAAGAUYHjIWEAAYgAQYRhiCAhiXBRiMBRjdBNgBAUiXFVDlA1jPE3ADeAGQAQGYAcUCoAGTFqoBBzAuNi40LjO4AQPIAQD4AQGYAgqgAoANqAIMwgIKEAAYsAMY1gQYR8ICBxAjGCcY6gLCAhQQABiABBjjBBi0AhjpBBjqAtgBAcICChAjGIAEGCcYigXCAggQABiABBixA8ICCxAAGIAEGLEDGIMBwgIFEAAYgATCAgoQABiABBhDGIoFwgIIEAAYgAQYogTCAgYQABgIGB6YAxTiAwUSATEgKfEFyXNUaGLTSFGIBgGQBgq6BgYIARABGAGSBwczLjMuMy4xoAfKUw&sclient=gws-wiz-serp
+-https://platform.openai.com/tokenizer
+-https://platform.openai.com/settings/organization/billing/overview
+```
 
 ### 사용 spec
 
@@ -14,8 +23,7 @@ redux-toolkit, modal portal, url변경 체크
 
 ### 코멘트
 
-단순히 정적 데이터와 redux toolkit-rtk를 사용한 기능이지만,
-의도했던 dispatch 기능부분에서 기존데이터를 유지한체 전달한 데이터만 업데이트 하려는 부분에서 1차 막힘..
+
 
 정적인 카드 데이터들을 관리하고 사용하기 위해 구조를 만들때 역방향 처리, 스프레드 타입, 타입마다 다른 의미등등.. 신경써야 할 부분이 있어 구조를 수시로 개선..
 예시 데이터)
