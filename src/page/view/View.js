@@ -48,7 +48,7 @@ const View = ({ spreadType }) => {
       {card.cardCount !== 0 && <Card />}
       {card.selectState && (
         <div className="btn-wrap">
-          <button onClick={() => setOnModal(true)}>해석풀이</button>
+          <button className="center-btn" onClick={() => setOnModal(true)}>해석풀이</button>
         </div>
       )}
       {onModal && (

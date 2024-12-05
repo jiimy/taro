@@ -6,7 +6,7 @@ $breakpoints-mobile : 768;
   $length: length($target);
 
   @for $i from 1 through $length {
-    $result: append($result, nth($target, $i) / $vw-content +vw);
+    $result: append($result, nth($target, $i) / $vw-content (+vw));
   }
 
   @return $result;

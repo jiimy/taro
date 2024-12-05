@@ -113,6 +113,10 @@ const InfoModal = ({ setOnModal, spreadType }) => {
             </div>
           ))}
       </div>
+      <div>
+        <strong>전체 해석</strong>
+        {/* 여기에 gtp 해석 넣기 */}
+      </div>
     </ModalFrame>
   );
 };
