@@ -13,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path={HOME} element={<Main />} />
+        <Route path={'/'} element={<Main />} />
         <Route path={`${HOME}/one`} element={<View spreadType={1} />} />
         <Route path={`${HOME}/three`} element={<View spreadType={2} />} />
         <Route path={`${HOME}/all-card`} element={<AllCardPage />} />
