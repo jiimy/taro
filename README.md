@@ -23,7 +23,7 @@ redux-toolkit, modal portal, url변경 체크
 
 ### 코멘트
 
-
+"homepage": "https://jiimy.github.io/taro",
 
 정적인 카드 데이터들을 관리하고 사용하기 위해 구조를 만들때 역방향 처리, 스프레드 타입, 타입마다 다른 의미등등.. 신경써야 할 부분이 있어 구조를 수시로 개선..
 예시 데이터)
