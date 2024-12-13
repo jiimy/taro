@@ -7,9 +7,11 @@ const Main = () => {
   // const [quesionView, setQuesionView] = useState(true);
   const qstn = useSelector((state) => state.question.value);
 
+  console.log('main : ', qstn);
+
   return (
     <>
-      {qstn !== '' && (
+      {qstn?.question !== "" && (
         <div className="main-page">
           <h2>메뉴 설명</h2>
           <dl>
@@ -117,7 +119,7 @@ const Main = () => {
           </dl>
         </div>
       )}
-      {qstn === '' && <Question />}
+      {qstn?.question === "" && <Question />}
     </>
   );
 };
