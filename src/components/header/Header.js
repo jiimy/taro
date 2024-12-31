@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { questionText } from "redux/question";
+import SpreadResult from "util/SpreadResult";
 import { init } from "../../redux/card";
 import "./header.scss";
 
@@ -11,9 +12,7 @@ const Header = () => {
   const [mobileHeaderState, setMobileHeaderState] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-  const QuestionType = useSelector((state) => state.question.value);
-
-  // console.log("QuestionType", QuestionType);
+  const question = useSelector((state) => state.question.value);
 
   const refreshBtn = () => {
     // console.log(";cc;,", Object.keys(router));
@@ -58,15 +57,14 @@ const Header = () => {
             <Link to="/taro">메인</Link>
           </li>
           <li>
-            <Link to="/taro/one">
-              원 오라클
-              <span>{QuestionType?.questionType === 1 && <>추천</>}</span>
-            </Link>
+            <Link to="/taro/one">원 오라클</Link>
           </li>
           <li>
             <Link to="/taro/three">
               쓰리 카드
-              <span>{QuestionType?.questionType === 3 && <>추천</>}</span>
+              <span>
+                {SpreadResult(question?.question).length === 3 && <>추천</>}
+              </span>
             </Link>
           </li>
           <li className="disabled">
@@ -93,7 +91,6 @@ const Header = () => {
             className="requestion"
             onClick={() => {
               dispatch(questionText(""));
-              // router.push("/");
               navigate("/");
             }}
           >

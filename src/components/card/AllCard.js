@@ -2,16 +2,10 @@ import CardData from 'constants/data';
 import React from 'react';
 
 const AllCard = ({ direction }) => {
-
-  console.log('ccc', 
-
-    CardData[0]?.content.readingType[1].upper[0]
-  )
-
   return (
     <div>
       {CardData.map((item, i) => (
-        <div>
+        <div key={i}>
           {item.index}번 {item.name}
           <img src={item.url} alt="" />
           <div>기본 의미</div>

@@ -1,12 +1,14 @@
 import classnames from "classnames";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { TabData } from "../../../constants/CardSolveType";
+// import { TabData } from "../../../constants/CardSolveType";
 import CardData from "../../../constants/data";
 import ModalFrame from "../ModalFrame";
 import "./infomodal.scss";
 import classNames from "classnames";
 import GptChat from "components/GptChat/GptChat";
+import useSpread from "util/SpreadResult";
+import SpreadResult from "util/SpreadResult";
 
 const InfoModal = ({ setOnModal, spreadType }) => {
   const card = useSelector((state) => state.card.value);
@@ -14,8 +16,6 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const [cardData, setCardData] = useState();
   const [tab, setTab] = useState(0);
   const [tab1, setTab1] = useState(1);
-
-  console.log('card', card);
 
   useEffect(() => {
     setCardData([]);
@@ -72,15 +72,18 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         </span>
       </div>
 
-      <div className="question">
-        {qstn?.question !== "-1" || qstn?.question !== "" ? qstn?.question : ""}
-      </div>
+      {qstn?.question && (
+        <div className="question">
+          {qstn?.question !== "-1" || qstn?.question !== ""
+            ? qstn?.question
+            : ""}
+        </div>
+      )}
 
       {reverse.length !== 1 && (
         <div className="card-position">
-          <strong>각 위치에 있는 카드의 의미</strong>
           <div className="desc">
-            {TabData[0][spreadType].map((item, i) => (
+            {SpreadResult(qstn?.question).map((item, i) => (
               <div className="item" key={i}>
                 {item}
               </div>
@@ -95,7 +98,8 @@ const InfoModal = ({ setOnModal, spreadType }) => {
               key={i}
               className={classnames("", {
                 "is-reverse": card.reverseCard[i] === 1,
-                "is-focus": reverse.length === 1 ? false : tab === i,
+                "is-focus":
+                  reverse.length === 1 ? false : tab === i && tab1 === 1,
                 "is-disabled": tab1 === 2,
               })}
               onClick={() => setTab(i)}
@@ -120,7 +124,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           </div>
 
           <div className="tag">
-            {TabData[0][spreadType].map((item, i) => (
+            {SpreadResult(qstn?.question).map((item, i) => (
               <div
                 className={classnames("tag-item", {
                   "is-select": tab === i,
@@ -151,11 +155,13 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         </>
       )}
       {tab1 === 2 && (
-        <div>
-          <strong>전체 해석</strong>
-          {/* 여기에 gtp 해석 넣기 */}
-          <GptChat type={"three"} />
-        </div>
+        <>
+          <div className="tag">
+            <strong>전체 해석</strong>
+            {/* 여기에 gtp 해석 넣기 */}
+          </div>
+          <GptChat />
+        </>
       )}
     </ModalFrame>
   );

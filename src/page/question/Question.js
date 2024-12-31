@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import s from "./question.module.scss";
-import { QuestionType } from "constants/QuestionType";
-import { useDispatch } from "react-redux";
-import { questionText, questionType } from "redux/question";
-import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import { QuestionType } from "constants/QuestionType";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { questionText } from "redux/question";
+import s from "./question.module.scss";
 
 const Question = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const Question = () => {
         <div className={s.input}>
           <input
             type="text"
-            value={text}
+            value={text || ""}
             onChange={onChange}
             placeholder="질문 입력"
             onKeyDown={handleKeyDown}
@@ -44,22 +44,21 @@ const Question = () => {
             <button
               onClick={() => {
                 onEnter();
-                dispatch(questionType(spreadType));
               }}
               className="question"
             >
               아이콘
             </button>
-            <button
-              className="not-question"
-              onClick={() => {
-                dispatch(questionText("-1"));
-              }}
-            >
-              질문하지 않기
-            </button>
           </div>
         </div>
+        <button
+          className="not-question"
+          onClick={() => {
+            dispatch(questionText("-1"));
+          }}
+        >
+          질문하지 않기
+        </button>
         <div className={s.quick_q}>빠른 질문</div>
         <div className={s.tag}>
           {QuestionType.map((item) => (
@@ -81,10 +80,9 @@ const Question = () => {
                 key={key}
                 onClick={() => {
                   setText(key);
-                  setSpreadType(value);
                 }}
               >
-                {key} - 선택카드 {value}장
+                {key} - 선택카드 {value?.length}장
               </li>
             ))}
         </ul>

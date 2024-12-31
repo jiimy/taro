@@ -35,6 +35,13 @@
       }
     }
   }
+  .question {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-top: 20px;
+  }
   ul {
     display: flex;
     max-width: 400px;

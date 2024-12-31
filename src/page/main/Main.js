@@ -4,10 +4,7 @@ import Question from "page/question/Question";
 import { useSelector } from "react-redux";
 
 const Main = () => {
-  // const [quesionView, setQuesionView] = useState(true);
   const qstn = useSelector((state) => state.question.value);
-
-  console.log('main : ', qstn);
 
   return (
     <>
