@@ -18,7 +18,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const [tab, setTab] = useState(0);
   const [tab1, setTab1] = useState(1);
 
-  console.log('qstn?.question', qstn?.question);
+  console.log("qstn?.question", qstn?.question);
 
   useEffect(() => {
     setCardData([]);
@@ -75,7 +75,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         </span>
       </div>
 
-      {qstn?.question && (
+      {qstn?.question !== "-1" && (
         <div className="question">
           {qstn?.question !== "-1" || qstn?.question !== ""
             ? qstn?.question
@@ -86,18 +86,17 @@ const InfoModal = ({ setOnModal, spreadType }) => {
       {reverse.length !== 1 && (
         <div className="card-position">
           <div className="desc">
-            {/* {!qstn?.question &&
-              TabData[0][spreadType].map((item, i) => (
-                <div className="item" key={i}>
-                  {item}
-                </div>
-              ))}
-            {qstn?.question &&
-              SpreadResult(qstn?.question).map((item, i) => (
-                <div className="item" key={i}>
-                  {item}
-                </div>
-              ))} */}
+            {qstn?.question !== "-1"
+              ? SpreadResult(qstn?.question).map((item, i) => (
+                  <div className="item" key={i}>
+                    {item}
+                  </div>
+                ))
+              : TabData[0][spreadType].map((item, i) => (
+                  <div className="item" key={i}>
+                    {item}
+                  </div>
+                ))}
           </div>
         </div>
       )}
@@ -134,30 +133,29 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           </div>
 
           <div className="tag">
-            {/* {!qstn?.question &&
-              TabData[0][spreadType].map((item, i) => (
-                <div
-                  className={classnames("tag-item", {
-                    "is-select": tab === i,
-                  })}
-                  key={i}
-                  onClick={() => setTab(i)}
-                >
-                  {item}
-                </div>
-              ))}
-            {qstn?.question &&
-               SpreadResult(qstn?.question).map((item, i) => (
-                <div
-                  className={classnames("tag-item", {
-                    "is-select": tab === i,
-                  })}
-                  key={i}
-                  onClick={() => setTab(i)}
-                >
-                  {item}
-                </div>
-              ))} */}
+            {qstn?.question !== "-1"
+              ? SpreadResult(qstn?.question).map((item, i) => (
+                  <div
+                    className={classnames("tag-item", {
+                      "is-select": tab === i,
+                    })}
+                    key={i}
+                    onClick={() => setTab(i)}
+                  >
+                    {item}
+                  </div>
+                ))
+              : TabData[0][spreadType].map((item, i) => (
+                  <div
+                    className={classnames("tag-item", {
+                      "is-select": tab === i,
+                    })}
+                    key={i}
+                    onClick={() => setTab(i)}
+                  >
+                    {item}
+                  </div>
+                ))}
           </div>
           <div className="content">
             {/* NOTE: 카드 한개 선택인경우 */}
