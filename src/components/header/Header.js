@@ -1,20 +1,19 @@
 import classNames from "classnames";
-import React, { useEffect, useState } from "react";
-import { Route, Link, Routes } from "react-router-dom";
-import "./header.scss";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { init, cardType } from "../../redux/card";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { questionText } from "redux/question";
+import { init } from "../../redux/card";
+import "./header.scss";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [mobileHeaderState, setMobileHeaderState] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-  const card = useSelector((state) => state.card.value);
-  const qstn = useSelector((state) => state.question.value);
+  const QuestionType = useSelector((state) => state.question.value);
 
-  console.log("cc", qstn);
+  // console.log("QuestionType", QuestionType);
 
   const refreshBtn = () => {
     // console.log(";cc;,", Object.keys(router));
@@ -59,10 +58,16 @@ const Header = () => {
             <Link to="/taro">메인</Link>
           </li>
           <li>
-            <Link to="/taro/one">원 오라클</Link>
+            <Link to="/taro/one">
+              원 오라클
+              <span>{QuestionType?.questionType === 1 && <>추천</>}</span>
+            </Link>
           </li>
           <li>
-            <Link to="/taro/three">쓰리 카드</Link>
+            <Link to="/taro/three">
+              쓰리 카드
+              <span>{QuestionType?.questionType === 3 && <>추천</>}</span>
+            </Link>
           </li>
           <li className="disabled">
             <Link to="/alternatively">양자택일</Link>
@@ -86,7 +91,11 @@ const Header = () => {
         <div className="header-menu">
           <div
             className="requestion"
-            onClick={() => dispatch(questionText(""))}
+            onClick={() => {
+              dispatch(questionText(""));
+              // router.push("/");
+              navigate("/");
+            }}
           >
             다시 질문하기
           </div>

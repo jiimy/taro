@@ -9,7 +9,7 @@
   height: 100%;
   background: white;
   section {
-    width: 400px;
+    width: 500px;
     height: 200px;
   }
   .quick_q {
@@ -28,6 +28,11 @@
       border: 1px solid #797979;
       font-size: 14px;
       cursor: pointer;
+      &.selected {
+        background: #797979;
+        border-color: white;
+        color: white;
+      }
       &:hover {
         background: #797979;
         border-color: white;

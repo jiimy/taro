@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import s from "./question.module.scss";
 import { QuestionType } from "constants/QuestionType";
 import { useDispatch } from "react-redux";
-import { questionText } from "redux/question";
+import { questionText, questionType } from "redux/question";
 import { useNavigate } from "react-router-dom";
+import classNames from "classnames";
 
 const Question = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [text, setText] = useState();
-  const [selectedText, setSelectedText] = useState();
+  const [spreadType, setSpreadType] = useState();
+  const [selectedText, setSelectedText] = useState(QuestionType[0]);
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -22,7 +24,7 @@ const Question = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       onEnter();
     }
   };
@@ -38,24 +40,53 @@ const Question = () => {
             placeholder="질문 입력"
             onKeyDown={handleKeyDown}
           />
-          <button onClick={onEnter}>아이콘</button>
+          <div>
+            <button
+              onClick={() => {
+                onEnter();
+                dispatch(questionType(spreadType));
+              }}
+              className="question"
+            >
+              아이콘
+            </button>
+            <button
+              className="not-question"
+              onClick={() => {
+                dispatch(questionText("-1"));
+              }}
+            >
+              질문하지 않기
+            </button>
+          </div>
         </div>
         <div className={s.quick_q}>빠른 질문</div>
         <div className={s.tag}>
-          {QuestionType.map((item, index) => (
-            <span key={index} onClick={() => setSelectedText(item.text)}>
+          {QuestionType.map((item) => (
+            <span
+              key={item.text}
+              onClick={() => setSelectedText(item)}
+              className={classNames("", {
+                [s.selected]: selectedText.text === item.text,
+              })}
+            >
               {item.text}
             </span>
           ))}
         </div>
         <ul>
-          {QuestionType.find((item) => item.text === selectedText)?.subText.map(
-            (subItem, index) => (
-              <li key={index} onClick={() => setText(subItem)}>
-                {subItem}
+          {selectedText.subText &&
+            Object.entries(selectedText.subText).map(([key, value]) => (
+              <li
+                key={key}
+                onClick={() => {
+                  setText(key);
+                  setSpreadType(value);
+                }}
+              >
+                {key} - 선택카드 {value}장
               </li>
-            )
-          )}
+            ))}
         </ul>
       </section>
     </div>

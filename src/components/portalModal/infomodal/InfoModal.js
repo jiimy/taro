@@ -6,13 +6,16 @@ import CardData from "../../../constants/data";
 import ModalFrame from "../ModalFrame";
 import "./infomodal.scss";
 import classNames from "classnames";
-import Test from "components/test/Test";
+import GptChat from "components/GptChat/GptChat";
 
 const InfoModal = ({ setOnModal, spreadType }) => {
   const card = useSelector((state) => state.card.value);
+  const qstn = useSelector((state) => state.question.value);
   const [cardData, setCardData] = useState();
   const [tab, setTab] = useState(0);
   const [tab1, setTab1] = useState(1);
+
+  console.log('card', card);
 
   useEffect(() => {
     setCardData([]);
@@ -61,6 +64,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         <span
           className={classNames("tab-item", {
             is_select: tab1 === 2,
+            is_disabled: qstn?.question === "-1" || qstn?.question === "",
           })}
           onClick={() => setTab1(2)}
         >
@@ -68,34 +72,40 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         </span>
       </div>
 
+      <div className="question">
+        {qstn?.question !== "-1" || qstn?.question !== "" ? qstn?.question : ""}
+      </div>
+
+      {reverse.length !== 1 && (
+        <div className="card-position">
+          <strong>각 위치에 있는 카드의 의미</strong>
+          <div className="desc">
+            {TabData[0][spreadType].map((item, i) => (
+              <div className="item" key={i}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      <ul>
+        {cardData &&
+          cardData.map((item, i) => (
+            <li
+              key={i}
+              className={classnames("", {
+                "is-reverse": card.reverseCard[i] === 1,
+                "is-focus": reverse.length === 1 ? false : tab === i,
+                "is-disabled": tab1 === 2,
+              })}
+              onClick={() => setTab(i)}
+            >
+              <img src={item[2]} alt={item[1]} />
+            </li>
+          ))}
+      </ul>
       {tab1 === 1 && (
         <>
-          {reverse.length !== 1 && (
-            <div className="card-position">
-              <strong>각 위치에 있는 카드의 의미</strong>
-              <div className="desc">
-                {TabData[0][spreadType].map((item, i) => (
-                  <div className="item">{item}</div>
-                ))}
-              </div>
-            </div>
-          )}
-          <ul>
-            {cardData &&
-              cardData.map((item, i) => (
-                <li
-                  key={i}
-                  className={classnames("", {
-                    "is-reverse": card.reverseCard[i] === 1,
-                    "is-focus": reverse.length === 1 ? false : tab === i,
-                  })}
-                  onClick={() => setTab(i)}
-                >
-                  <img src={item[2]} alt={item[1]} />
-                </li>
-              ))}
-          </ul>
-
           <div className="mean-area">
             <div className="mean">
               <strong>카드의 기본 의미</strong>
@@ -144,7 +154,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         <div>
           <strong>전체 해석</strong>
           {/* 여기에 gtp 해석 넣기 */}
-          <Test />
+          <GptChat type={"three"} />
         </div>
       )}
     </ModalFrame>
