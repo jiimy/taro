@@ -18,6 +18,8 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const [tab, setTab] = useState(0);
   const [tab1, setTab1] = useState(1);
 
+  console.log('qstn?.question', qstn?.question);
+
   useEffect(() => {
     setCardData([]);
     for (let i = 0; i < card.selectedCard.length; i++) {
@@ -84,7 +86,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
       {reverse.length !== 1 && (
         <div className="card-position">
           <div className="desc">
-            {!qstn?.question &&
+            {/* {!qstn?.question &&
               TabData[0][spreadType].map((item, i) => (
                 <div className="item" key={i}>
                   {item}
@@ -95,7 +97,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
                 <div className="item" key={i}>
                   {item}
                 </div>
-              ))}
+              ))} */}
           </div>
         </div>
       )}
@@ -132,7 +134,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           </div>
 
           <div className="tag">
-            {!qstn?.question &&
+            {/* {!qstn?.question &&
               TabData[0][spreadType].map((item, i) => (
                 <div
                   className={classnames("tag-item", {
@@ -155,7 +157,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
                 >
                   {item}
                 </div>
-              ))}
+              ))} */}
           </div>
           <div className="content">
             {/* NOTE: 카드 한개 선택인경우 */}
