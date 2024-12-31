@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { questionText } from "redux/question";
 import s from "./question.module.scss";
+// import search from '../../assets/image/search.svg';
+import search from "../../assets/image/05.png";
 
 const Question = () => {
   const dispatch = useDispatch();
@@ -45,14 +47,12 @@ const Question = () => {
               onClick={() => {
                 onEnter();
               }}
-              className="question"
-            >
-              아이콘
-            </button>
+              className={s.question}
+            ></button>
           </div>
         </div>
         <button
-          className="not-question"
+          className={s.not_question}
           onClick={() => {
             dispatch(questionText("-1"));
           }}

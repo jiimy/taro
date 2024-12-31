@@ -9,6 +9,7 @@ import classNames from "classnames";
 import GptChat from "components/GptChat/GptChat";
 import useSpread from "util/SpreadResult";
 import SpreadResult from "util/SpreadResult";
+import { TabData } from "constants/CardSolveType";
 
 const InfoModal = ({ setOnModal, spreadType }) => {
   const card = useSelector((state) => state.card.value);
@@ -83,11 +84,18 @@ const InfoModal = ({ setOnModal, spreadType }) => {
       {reverse.length !== 1 && (
         <div className="card-position">
           <div className="desc">
-            {SpreadResult(qstn?.question).map((item, i) => (
-              <div className="item" key={i}>
-                {item}
-              </div>
-            ))}
+            {!qstn?.question &&
+              TabData[0][spreadType].map((item, i) => (
+                <div className="item" key={i}>
+                  {item}
+                </div>
+              ))}
+            {qstn?.question &&
+              SpreadResult(qstn?.question).map((item, i) => (
+                <div className="item" key={i}>
+                  {item}
+                </div>
+              ))}
           </div>
         </div>
       )}
@@ -124,17 +132,30 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           </div>
 
           <div className="tag">
-            {SpreadResult(qstn?.question).map((item, i) => (
-              <div
-                className={classnames("tag-item", {
-                  "is-select": tab === i,
-                })}
-                key={i}
-                onClick={() => setTab(i)}
-              >
-                {item}
-              </div>
-            ))}
+            {!qstn?.question &&
+              TabData[0][spreadType].map((item, i) => (
+                <div
+                  className={classnames("tag-item", {
+                    "is-select": tab === i,
+                  })}
+                  key={i}
+                  onClick={() => setTab(i)}
+                >
+                  {item}
+                </div>
+              ))}
+            {qstn?.question &&
+               SpreadResult(qstn?.question).map((item, i) => (
+                <div
+                  className={classnames("tag-item", {
+                    "is-select": tab === i,
+                  })}
+                  key={i}
+                  onClick={() => setTab(i)}
+                >
+                  {item}
+                </div>
+              ))}
           </div>
           <div className="content">
             {/* NOTE: 카드 한개 선택인경우 */}
