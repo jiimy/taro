@@ -16,6 +16,7 @@ const GptChat = () => {
   useEffect(() => {
     const GptResponse = async () => {
       try {
+        setLoading(true);
         const response = await fetch(
           "https://api.openai.com/v1/chat/completions",
           {
@@ -42,15 +43,14 @@ const GptChat = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        setLoading(true);
         const data = await response.json();
-        setLoading(false);
-
         const content = data.choices?.[0]?.message?.content || "응답 없음";
         setResponseData(content);
       } catch (error) {
         console.error("API 호출 중 오류 발생:", error);
         setResponseData("API 호출 실패");
+      } finally {
+        setLoading(false);
       }
     };
     GptResponse();
@@ -59,10 +59,7 @@ const GptChat = () => {
   return (
     <div className={s.chat}>
       <div className={s.chat_result}>
-        {loading && (
-          <span className="messageWait">답변을 기다리고 있습니다</span>
-        )}
-        {responseData}
+        {loading ? "답변을 작성중..." : responseData}
       </div>
     </div>
   );
