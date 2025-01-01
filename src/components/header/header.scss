@@ -57,6 +57,14 @@ header {
           transform: rotate(-45deg) translate(1px, -1px);
         }
       }
+      ~ .header-menu {
+        display: none;
+      }
+    }
+    &.is-disabled {
+      @include media-mo {
+        pointer-events: none;
+      }
     }
   }
 
@@ -102,5 +110,8 @@ header {
     right: 24px;
     margin: auto;
     cursor: pointer;
+    @include media-mo {
+      top: auto;
+    }
   }
 }

@@ -41,6 +41,7 @@ const Header = () => {
         <div
           className={classNames("header-btn", {
             "is-show": mobileHeaderState,
+            "is-disabled": question?.question === ''
           })}
           onClick={() => setMobileHeaderState(!mobileHeaderState)}
         >
