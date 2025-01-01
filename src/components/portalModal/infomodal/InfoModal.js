@@ -18,7 +18,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const [tab, setTab] = useState(0);
   const [tab1, setTab1] = useState(1);
 
-  console.log("qstn?.question", qstn?.question);
+  // console.log("qstn?.question", qstn?.question);
 
   useEffect(() => {
     setCardData([]);
