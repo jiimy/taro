@@ -4,17 +4,21 @@
 // 위 기준 70토큰 0.5 + 201토큰 + 1.5 = 0.000365 / 달러 = 1원이 안됨
 import Interpre from "hooks/useInterpre";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import s from "./gptChat.module.scss";
+import { responseText } from "redux/question";
 
 const GptChat = () => {
+  const dispatch = useDispatch();
   const card = useSelector((state) => state.card.value);
   const qstn = useSelector((state) => state.question.value);
+  const resultSolve = useSelector((state) => state.question.value);
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState("");
 
   useEffect(() => {
     // console.log("question: ", Interpre(card, qstn?.question));
+    console.log("resultSolve", resultSolve);
     const GptResponse = async () => {
       try {
         setLoading(true);
@@ -36,7 +40,7 @@ const GptChat = () => {
                 },
               ],
               temperature: 0.5,
-              max_tokens: 400,
+              max_tokens: 500,
             }),
           }
         );
@@ -48,6 +52,7 @@ const GptChat = () => {
 
         const data = await response.json();
         const content = data.choices?.[0]?.message?.content || "응답 없음";
+        dispatch(responseText(content));
         setResponseData(content);
       } catch (error) {
         console.error("API 호출 중 오류 발생:", error);
@@ -56,13 +61,22 @@ const GptChat = () => {
         setLoading(false);
       }
     };
-    GptResponse();
+    if (resultSolve?.responseData === "") {
+      GptResponse();
+    } else {
+      setResponseData("");
+    }
   }, []);
 
   return (
     <div className={s.chat}>
       <div className={s.chat_result}>
-        {loading ? "답변을 작성중..." : responseData}
+        {resultSolve?.responseData
+          ? resultSolve?.responseData
+          : loading
+          ? "답변을 작성중..."
+          : responseData}
+        {/* {loading ? "답변을 작성중..." : responseData} */}
       </div>
     </div>
   );

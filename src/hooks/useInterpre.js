@@ -23,7 +23,7 @@ function Interpre(card, question) {
 
   return `${question} 타로카드 ${cardTexts.join(", ")}을 ${subText.join(
     ", "
-  )}로 해석해줘`;
+  )}로 500자 미만으로 해석해줘`;
 }
 
 export default Interpre;

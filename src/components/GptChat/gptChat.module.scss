@@ -1,5 +1,7 @@
 .chat {
   .chat_result {
+    max-height: 400px;
+    overflow: auto;
     white-space: pre-line;
   }
 }
