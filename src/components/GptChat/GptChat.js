@@ -14,7 +14,7 @@ const GptChat = () => {
   const [responseData, setResponseData] = useState("");
 
   useEffect(() => {
-    console.log("question: ", Interpre(card, qstn?.question));
+    // console.log("question: ", Interpre(card, qstn?.question));
     const GptResponse = async () => {
       try {
         setLoading(true);
@@ -44,7 +44,7 @@ const GptChat = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        console.log("API Key:", process.env.REACT_APP_OPENAI_API_KEY);
+        // console.log("API Key:", process.env.REACT_APP_OPENAI_API_KEY);
 
         const data = await response.json();
         const content = data.choices?.[0]?.message?.content || "응답 없음";
