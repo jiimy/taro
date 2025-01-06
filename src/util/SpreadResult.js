@@ -8,10 +8,10 @@ function SpreadResult(key) {
 
   for (const category of QuestionType) {
     if (category.subText[key]) {
-      console.log('m1p: ', category.subText[key])
+      // console.log('m1p: ', category.subText[key])
       return category.subText[key];
     } else {
-      console.log("card : ", Array(card.selectedCard.length).fill(""));
+      // console.log("card : ", Array(card.selectedCard.length).fill(""));
       return Array(card.selectedCard.length).fill("");
     }
   }

@@ -16,6 +16,9 @@ export const cardSlice = createSlice({
   name: "card",
   initialState: { value: initialStateValue },
   reducers: {
+    suffleState: (state,action) => {
+      state.value.selectState = !state.value.selectState
+    },
     // 카드의 스프레드 타입과 카드를 선택했을 때
     cardState: (state, action) => {
       state.value = action.payload;
@@ -27,6 +30,8 @@ export const cardSlice = createSlice({
       state.value.selectedCard = action.payload.selectedCard;
       state.value.reverseCard = action.payload.reverseCard;
       state.value.selectState = action.payload.selectState;
+      // console.log('state: ', action.payload.finalCard)
+      // state.value.finalCard = selectedCard * reverseCard;
       state.value.finalCard = action.payload.finalCard;
       // state.name = action.payload.name;
       // state.age = action.payload.age;
@@ -47,6 +52,6 @@ export const cardSlice = createSlice({
   },
 });
 
-export const { cardSelect, init, cardCount, cardType } = cardSlice.actions;
+export const { cardSelect, init, cardCount, cardType, suffleState } = cardSlice.actions;
 export default cardSlice.reducer;
 

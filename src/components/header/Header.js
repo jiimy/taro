@@ -17,6 +17,7 @@ const Header = () => {
 
   const refreshBtn = () => {
     // console.log(";cc;,", Object.keys(router));
+    dispatch(questionState(""));
     switch (window.location.href.split("/taro")[1]) {
       case "/one":
         dispatch(init({ cardCount: 1, selectedCard: null, reverseCard: null }));
@@ -42,7 +43,7 @@ const Header = () => {
         <div
           className={classNames("header-btn", {
             "is-show": mobileHeaderState,
-            "is-disabled": question?.question === ''
+            "is-disabled": question?.question === "",
           })}
           onClick={() => setMobileHeaderState(!mobileHeaderState)}
         >

@@ -15,7 +15,25 @@ const GptChat = () => {
   const resultSolve = useSelector((state) => state.question.value);
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState("");
-  const [tempCard, setTempCard] = useState([]);
+  const [newCardDraw, setNewCardDraw] = useState(false);
+
+  // useEffect(() => {
+  //   console.log('카드비교',
+  //     localStorage.getItem('mytaroCard'),
+  //     card.finalCard.join()
+  //   )
+  //   if (!localStorage.getItem("mytaroCard")) {
+  //     localStorage.setItem("mytaroCard", card.finalCard.join());
+  //     // 새 카드임
+  //     console.log('새카드');
+  //     setNewCardDraw(true);
+  //   }
+  //   if (localStorage.getItem("mytaroCard") === card.finalCard.join()) {
+  //     // 이미 있음
+  //     console.log('이미 드로우');
+  //     setNewCardDraw(false);
+  //   }
+  // }, []);
 
   useEffect(() => {
     console.log("question: ", Interpre(card, qstn?.question));
@@ -39,7 +57,7 @@ const GptChat = () => {
                   role: "user",
                   content: Interpre(card, qstn?.question),
                   // content:
-                    // "11111 타로카드 18 정방향, 14 정방향, 2 역방향을 로 500자 미만으로 해석해줘",
+                  // "11111 타로카드 18 정방향, 14 정방향, 2 역방향을 로 500자 미만으로 해석해줘",
                 },
               ],
               temperature: 0.5,
@@ -64,13 +82,16 @@ const GptChat = () => {
         setLoading(false);
       }
     };
-    // if (resultSolve?.responseData === "") {
-    //  if(setTempCard)  {
-    //   GptResponse();
-    // } else {
-    //   setResponseData("");
-    // }
+    console.log('답변: ', resultSolve.responseData)
+    if (resultSolve?.responseData === '') {
+      GptResponse();
+      //  if(setTempCard)  {
+    } else {
+      setResponseData(resultSolve.responseData);
+    }
   }, []);
+
+  console.log("답변: ", resultSolve.responseData);
 
   return (
     <div className={s.chat}>

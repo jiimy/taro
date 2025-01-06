@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import backimg from "../../assets/image/back.png";
 import CardData from "../../constants/data.js";
-import { cardSelect, init } from "../../redux/card";
+import { cardSelect, init, suffleState } from "../../redux/card";
 import { infoModalState } from "../../redux/modal";
 import LoadingModal from "../portalModal/loadingmodal/LoadingModal";
 import { useLocation } from "react-router-dom";
@@ -16,6 +16,7 @@ const Card = () => {
   const [select, setSelect] = useState([]); // 선택한것
   const [data, setData] = useState([]); // 받아온 데이터
   const [delayData, setDelayData] = useState([]); // 데이터 딜레이로 넣기
+  const [finalSelectCard, setFinalSelectCard] = useState([]);
   const [delayView, setDelayView] = useState(false); // 딜레이로 보여주기?
   const card = useSelector((state) => state.card.value);
   const modal = useSelector((state) => state.modal.value);
@@ -36,7 +37,7 @@ const Card = () => {
     }
     // 리버스
     for (let i = 0; i <= CardData.length; i++) {
-      setReverse((reverse) => [...reverse, rand(-1, 1)]);
+      setReverse((reverse) => [...reverse, Math.random() < 0.5 ? -1 : 1]);
     }
     dispatch(
       infoModalState({
@@ -52,7 +53,7 @@ const Card = () => {
           selectedCard: select,
           reverseCard: reversing,
           selectState: select.length === card.cardCount ? true : null,
-          finalCard: select * reversing
+          finalCard: finalSelectCard,
         })
       );
     }
@@ -66,6 +67,9 @@ const Card = () => {
         infoModalState({
           infoModal: false,
         })
+      );
+      dispatch(
+        suffleState(true)
       );
       const interval = setInterval(() => {
         n += 1;
@@ -84,6 +88,7 @@ const Card = () => {
       // 선택한게 n개보다 적을때
       setSelect((select) => [...select, key]);
       setReversing((reversing) => [...reversing, reverse[i]]);
+      setFinalSelectCard((finalSelectCard) => [...finalSelectCard, key * reverse[i]]);
     }
   };
 

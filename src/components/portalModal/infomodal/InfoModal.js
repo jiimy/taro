@@ -17,17 +17,13 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const [cardData, setCardData] = useState();
   const [tab, setTab] = useState(0);
   const [tab1, setTab1] = useState(2);
-  // const [chk, setChk] = useState(false);
 
-  console.log("qstn?.question", card);
+  console.log("card: ", card);
+  console.log("qstn?.question :", qstn);
   // console.log("test: ", SpreadResult(qstn?.question)[0] === "" ? "null" : "is");
   // console.log("test1: ", qstn?.question);
   const chk = SpreadResult(qstn?.question)[0] === "" ? false : true;
   // console.log('cc', chk);
-
-  useEffect(() => {
-    // localStorage.setItem('mytaroCard', card.)
-  }, [])
 
   useEffect(() => {
     setCardData([]);
@@ -84,7 +80,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         </span>
       </div>
 
-      {qstn?.questionState === true && (
+      {qstn?.question !== '' && (
         <div className="question">{qstn?.question}</div>
       )}
 
@@ -113,7 +109,8 @@ const InfoModal = ({ setOnModal, spreadType }) => {
               key={i}
               className={classnames("", {
                 "is-reverse": card.reverseCard[i] === 1,
-                "is-focus": reverse.length === 1 ? false : tab === i && tab1 === 1,
+                "is-focus":
+                  reverse.length === 1 ? false : tab === i && tab1 === 2,
                 "is-disabled": tab1 === 2,
               })}
               onClick={() => setTab(i)}
