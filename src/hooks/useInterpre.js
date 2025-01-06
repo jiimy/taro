@@ -3,10 +3,13 @@ const { QuestionType } = require("constants/QuestionType");
 // 최종 질문 추출
 function Interpre(card, question) {
   let subText = [];
+  console.log('cc1 : ', card, question)
+  if(question)
   for (const category of QuestionType) {
     if (category.subText[question]) {
       subText = category.subText[question];
-      break;
+    } else {
+      subText = question
     }
   }
 
@@ -20,6 +23,12 @@ function Interpre(card, question) {
   // if() {
 
   // }
+  console.log(
+    "dd1: ",
+    `${question} 타로카드 ${cardTexts.join(", ")}을 ${subText.join(
+      ", "
+    )}로 500자 미만으로 해석해줘`
+  );
 
   return `${question} 타로카드 ${cardTexts.join(", ")}을 ${subText.join(
     ", "

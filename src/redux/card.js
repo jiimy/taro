@@ -8,7 +8,8 @@ const initialStateValue = {
     cardCount: 0,
     selectState: false, // 모든 카드 선택완료
     selectedCard: [], // 선택한 카드
-    reverseCard: [] // 선택한 카드의 리버스 상태 
+    reverseCard: [], // 선택한 카드의 리버스 상태 
+    finalCard: [] // 리버스상태와 선택카드 총 상태
 };
 
 export const cardSlice = createSlice({
@@ -26,7 +27,7 @@ export const cardSlice = createSlice({
       state.value.selectedCard = action.payload.selectedCard;
       state.value.reverseCard = action.payload.reverseCard;
       state.value.selectState = action.payload.selectState;
-
+      state.value.finalCard = action.payload.finalCard;
       // state.name = action.payload.name;
       // state.age = action.payload.age;
     },

@@ -36,7 +36,7 @@ const Card = () => {
     }
     // 리버스
     for (let i = 0; i <= CardData.length; i++) {
-      setReverse((reverse) => [...reverse, rand(0, 1)]);
+      setReverse((reverse) => [...reverse, rand(-1, 1)]);
     }
     dispatch(
       infoModalState({
@@ -51,7 +51,8 @@ const Card = () => {
         cardSelect({
           selectedCard: select,
           reverseCard: reversing,
-          selectState: select.length === card.cardCount ? true : null
+          selectState: select.length === card.cardCount ? true : null,
+          finalCard: select * reversing
         })
       );
     }

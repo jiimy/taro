@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { questionText } from "redux/question";
+import { questionState, questionText } from "redux/question";
 import SpreadResult from "util/SpreadResult";
 import { init } from "../../redux/card";
 import "./header.scss";
@@ -13,6 +13,7 @@ const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const question = useSelector((state) => state.question.value);
+  // const questionState = useSelector((state) => state.questionState.value);
 
   const refreshBtn = () => {
     // console.log(";cc;,", Object.keys(router));
@@ -92,6 +93,7 @@ const Header = () => {
             className="requestion"
             onClick={() => {
               dispatch(questionText(""));
+              dispatch(questionState(false));
               navigate("/");
             }}
           >

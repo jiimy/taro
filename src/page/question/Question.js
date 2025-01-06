@@ -3,7 +3,7 @@ import { QuestionType } from "constants/QuestionType";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { questionText } from "redux/question";
+import { questionState, questionText } from "redux/question";
 import s from "./question.module.scss";
 // import search from '../../assets/image/search.svg';
 import search from "../../assets/image/05.png";
@@ -22,7 +22,10 @@ const Question = () => {
   const onEnter = () => {
     if (text) {
       dispatch(questionText(text));
+    } else {
+      dispatch(questionText(''));
     }
+    dispatch(questionState(true));
   };
 
   const handleKeyDown = (e) => {
@@ -39,7 +42,7 @@ const Question = () => {
             type="text"
             value={text || ""}
             onChange={onChange}
-            placeholder="질문 입력"
+            placeholder="정확한 질문을 할수록 좋은 답변이 나옵니다."
             onKeyDown={handleKeyDown}
           />
           <div>
@@ -54,7 +57,8 @@ const Question = () => {
         <button
           className={s.not_question}
           onClick={() => {
-            dispatch(questionText("-1"));
+            dispatch(questionText(""));
+            dispatch(questionState(true));
           }}
         >
           질문하지 않기

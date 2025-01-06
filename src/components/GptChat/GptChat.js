@@ -15,10 +15,11 @@ const GptChat = () => {
   const resultSolve = useSelector((state) => state.question.value);
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState("");
+  const [tempCard, setTempCard] = useState([]);
 
   useEffect(() => {
-    // console.log("question: ", Interpre(card, qstn?.question));
-    console.log("resultSolve", resultSolve);
+    console.log("question: ", Interpre(card, qstn?.question));
+    // console.log("resultSolve", qstn?.question);
     const GptResponse = async () => {
       try {
         setLoading(true);
@@ -37,6 +38,8 @@ const GptChat = () => {
                 {
                   role: "user",
                   content: Interpre(card, qstn?.question),
+                  // content:
+                    // "11111 타로카드 18 정방향, 14 정방향, 2 역방향을 로 500자 미만으로 해석해줘",
                 },
               ],
               temperature: 0.5,
@@ -61,11 +64,12 @@ const GptChat = () => {
         setLoading(false);
       }
     };
-    if (resultSolve?.responseData === "") {
-      GptResponse();
-    } else {
-      setResponseData("");
-    }
+    // if (resultSolve?.responseData === "") {
+    //  if(setTempCard)  {
+    //   GptResponse();
+    // } else {
+    //   setResponseData("");
+    // }
   }, []);
 
   return (

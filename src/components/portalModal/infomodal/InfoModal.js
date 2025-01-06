@@ -16,9 +16,18 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const qstn = useSelector((state) => state.question.value);
   const [cardData, setCardData] = useState();
   const [tab, setTab] = useState(0);
-  const [tab1, setTab1] = useState(1);
+  const [tab1, setTab1] = useState(2);
+  // const [chk, setChk] = useState(false);
 
-  // console.log("qstn?.question", qstn?.question);
+  console.log("qstn?.question", card);
+  // console.log("test: ", SpreadResult(qstn?.question)[0] === "" ? "null" : "is");
+  // console.log("test1: ", qstn?.question);
+  const chk = SpreadResult(qstn?.question)[0] === "" ? false : true;
+  // console.log('cc', chk);
+
+  useEffect(() => {
+    // localStorage.setItem('mytaroCard', card.)
+  }, [])
 
   useEffect(() => {
     setCardData([]);
@@ -58,36 +67,33 @@ const InfoModal = ({ setOnModal, spreadType }) => {
       <div className="tab">
         <span
           className={classNames("tab-item", {
-            is_select: tab1 === 1,
+            is_select: tab1 === 2,
           })}
-          onClick={() => setTab1(1)}
+          onClick={() => setTab1(2)}
         >
           기본 해석
         </span>
         <span
           className={classNames("tab-item", {
-            is_select: tab1 === 2,
-            is_disabled: qstn?.question === "-1" || qstn?.question === "",
+            is_select: tab1 === 1,
+            is_disabled: qstn?.questionState === false,
           })}
-          onClick={() => setTab1(2)}
+          onClick={() => setTab1(1)}
         >
           GPT 해석
         </span>
       </div>
 
-      {qstn?.question !== "-1" && (
-        <div className="question">
-          {qstn?.question !== "-1" || qstn?.question !== ""
-            ? qstn?.question
-            : ""}
-        </div>
+      {qstn?.questionState === true && (
+        <div className="question">{qstn?.question}</div>
       )}
 
       {reverse.length !== 1 && (
         <div className="card-position">
           <div className="desc">
-            {qstn?.question !== "-1"
-              ? SpreadResult(qstn?.question).map((item, i) => (
+            {qstn?.question === true &&
+            SpreadResult(qstn?.question) !== undefined
+              ? SpreadResult(qstn?.question)?.map((item, i) => (
                   <div className="item" key={i}>
                     {item}
                   </div>
@@ -107,8 +113,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
               key={i}
               className={classnames("", {
                 "is-reverse": card.reverseCard[i] === 1,
-                "is-focus":
-                  reverse.length === 1 ? false : tab === i && tab1 === 1,
+                "is-focus": reverse.length === 1 ? false : tab === i && tab1 === 1,
                 "is-disabled": tab1 === 2,
               })}
               onClick={() => setTab(i)}
@@ -117,7 +122,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
             </li>
           ))}
       </ul>
-      {tab1 === 1 && (
+      {tab1 === 2 && (
         <>
           <div className="mean-area">
             <div className="mean">
@@ -132,20 +137,10 @@ const InfoModal = ({ setOnModal, spreadType }) => {
             </div>
           </div>
 
-          <div className="tag">
-            {qstn?.question !== "-1"
-              ? SpreadResult(qstn?.question).map((item, i) => (
-                  <div
-                    className={classnames("tag-item", {
-                      "is-select": tab === i,
-                    })}
-                    key={i}
-                    onClick={() => setTab(i)}
-                  >
-                    {item}
-                  </div>
-                ))
-              : TabData[0][spreadType].map((item, i) => (
+          {chk ? (
+            <>
+              <div className="tag">
+                {SpreadResult(qstn?.question).map((item, i) => (
                   <div
                     className={classnames("tag-item", {
                       "is-select": tab === i,
@@ -156,7 +151,25 @@ const InfoModal = ({ setOnModal, spreadType }) => {
                     {item}
                   </div>
                 ))}
-          </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="tag">
+                {TabData[0][spreadType].map((item, i) => (
+                  <div
+                    className={classnames("tag-item", {
+                      "is-select": tab === i,
+                    })}
+                    key={i}
+                    onClick={() => setTab(i)}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
           <div className="content">
             {/* NOTE: 카드 한개 선택인경우 */}
             {reverse.length === 1 && <div>{strArr[0][tab]}</div>}
@@ -175,11 +188,10 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           </div>
         </>
       )}
-      {tab1 === 2 && (
+      {tab1 === 1 && (
         <>
           <div className="tag">
             <strong>전체 해석</strong>
-            {/* 여기에 gtp 해석 넣기 */}
           </div>
           <GptChat />
         </>
