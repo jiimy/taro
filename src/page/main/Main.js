@@ -11,10 +11,6 @@ const Main = () => {
     setView(qstn.questionState);
   }, [qstn]);
 
-  useEffect(() => {
-    console.log('main: ', qstn.questionState)
-  }, [])
-
   if (qstn.questionState === undefined) {
     return null; // 초기 상태 로딩 중에 아무것도 렌더링하지 않음
   }

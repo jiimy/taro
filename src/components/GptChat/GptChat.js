@@ -36,7 +36,6 @@ const GptChat = () => {
   // }, []);
 
   useEffect(() => {
-    console.log("question: ", Interpre(card, qstn?.question));
     // console.log("resultSolve", qstn?.question);
     const GptResponse = async () => {
       try {
@@ -82,7 +81,6 @@ const GptChat = () => {
         setLoading(false);
       }
     };
-    console.log('답변: ', resultSolve.responseData)
     if (resultSolve?.responseData === '') {
       GptResponse();
       //  if(setTempCard)  {
@@ -90,8 +88,6 @@ const GptChat = () => {
       setResponseData(resultSolve.responseData);
     }
   }, []);
-
-  console.log("답변: ", resultSolve.responseData);
 
   return (
     <div className={s.chat}>

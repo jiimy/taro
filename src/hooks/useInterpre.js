@@ -3,7 +3,6 @@ const { QuestionType } = require("constants/QuestionType");
 // 최종 질문 추출
 function Interpre(card, question) {
   let subText = [];
-  console.log("cc1 : ", card, question);
 
   const cardTexts = card.selectedCard.map((cardNumber, index) => {
     const orientation = card.reverseCard[index] === 1 ? "역방향" : "정방향";

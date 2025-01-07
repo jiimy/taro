@@ -17,12 +17,6 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const [tab, setTab] = useState(0);
   const [tab1, setTab1] = useState(2);
 
-  console.log("card: ", card);
-  console.log("qstn?.question :", qstn);
-  // console.log("test: ", SpreadResult(qstn?.question)[0] === "" ? "null" : "is");
-  console.log("test1: ", qstn?.question);
-  // console.log('cc', chk);
-
   useEffect(() => {
     setCardData([]);
     for (let i = 0; i < card.selectedCard.length; i++) {

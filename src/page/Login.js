@@ -6,7 +6,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  console.log("cc: ", user);
   return (
     <div>
       <button

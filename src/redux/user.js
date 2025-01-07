@@ -31,8 +31,6 @@ export const userSlice = createSlice({
     },
     increase(state, action) {
       // state.age += action.payload;
-      console.log('state.age: ', state.age, action.payload.name);
-      console.log('state.name: ', state.name, action.payload);
       state.name = action.payload.name;
       state.age = action.payload.age;
     },
