@@ -13,7 +13,10 @@ const Header = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const question = useSelector((state) => state.question.value);
+  const [tag, setTag] = useState([]);
   // const questionState = useSelector((state) => state.questionState.value);
+
+  // console.log("g헤더 : ", SpreadResult(question?.question).length === 3);
 
   const refreshBtn = () => {
     // console.log(";cc;,", Object.keys(router));
@@ -66,7 +69,8 @@ const Header = () => {
             <Link to="/taro/three">
               쓰리 카드
               <span>
-                {SpreadResult(question?.question).length === 3 && <>추천</>}
+                {/* {} */}
+                <SpreadResult qustion={question?.question} count={3} />
               </span>
             </Link>
           </li>

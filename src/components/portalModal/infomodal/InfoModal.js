@@ -7,7 +7,6 @@ import ModalFrame from "../ModalFrame";
 import "./infomodal.scss";
 import classNames from "classnames";
 import GptChat from "components/GptChat/GptChat";
-import useSpread from "util/SpreadResult";
 import SpreadResult from "util/SpreadResult";
 import { TabData } from "constants/CardSolveType";
 
@@ -21,8 +20,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   console.log("card: ", card);
   console.log("qstn?.question :", qstn);
   // console.log("test: ", SpreadResult(qstn?.question)[0] === "" ? "null" : "is");
-  // console.log("test1: ", qstn?.question);
-  const chk = SpreadResult(qstn?.question)[0] === "" ? false : true;
+  console.log("test1: ", qstn?.question);
   // console.log('cc', chk);
 
   useEffect(() => {
@@ -72,7 +70,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         <span
           className={classNames("tab-item", {
             is_select: tab1 === 1,
-            is_disabled: qstn?.questionState === false,
+            is_disabled: qstn?.question === "",
           })}
           onClick={() => setTab1(1)}
         >
@@ -80,14 +78,14 @@ const InfoModal = ({ setOnModal, spreadType }) => {
         </span>
       </div>
 
-      {qstn?.question !== '' && (
+      {qstn?.question !== "" && (
         <div className="question">{qstn?.question}</div>
       )}
 
       {reverse.length !== 1 && (
         <div className="card-position">
           <div className="desc">
-            {qstn?.question === true &&
+            {/* {qstn?.question === true &&
             SpreadResult(qstn?.question) !== undefined
               ? SpreadResult(qstn?.question)?.map((item, i) => (
                   <div className="item" key={i}>
@@ -98,7 +96,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
                   <div className="item" key={i}>
                     {item}
                   </div>
-                ))}
+                ))} */}
           </div>
         </div>
       )}
@@ -134,7 +132,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
             </div>
           </div>
 
-          {chk ? (
+          {/* {qstn?.question ? (
             <>
               <div className="tag">
                 {SpreadResult(qstn?.question).map((item, i) => (
@@ -166,7 +164,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
                 ))}
               </div>
             </>
-          )}
+          )} */}
           <div className="content">
             {/* NOTE: 카드 한개 선택인경우 */}
             {reverse.length === 1 && <div>{strArr[0][tab]}</div>}
