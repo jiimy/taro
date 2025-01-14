@@ -15,7 +15,9 @@ const InfoModal = ({ setOnModal, spreadType }) => {
   const qstn = useSelector((state) => state.question.value);
   const [cardData, setCardData] = useState();
   const [tab, setTab] = useState(0);
-  const [tab1, setTab1] = useState(2);
+  const [tab1, setTab1] = useState(1);
+
+  console.log('qstn;', qstn?.question);
 
   useEffect(() => {
     setCardData([]);
@@ -55,18 +57,18 @@ const InfoModal = ({ setOnModal, spreadType }) => {
       <div className="tab">
         <span
           className={classNames("tab-item", {
-            is_select: tab1 === 2,
+            is_select: tab1 === 1,
           })}
-          onClick={() => setTab1(2)}
+          onClick={() => setTab1(1)}
         >
           기본 해석
         </span>
         <span
           className={classNames("tab-item", {
-            is_select: tab1 === 1,
+            is_select: tab1 === 2,
             is_disabled: qstn?.question === "",
           })}
-          onClick={() => setTab1(1)}
+          onClick={() => setTab1(2)}
         >
           GPT 해석
         </span>
@@ -102,7 +104,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
               className={classnames("", {
                 "is-reverse": card.reverseCard[i] === 1,
                 "is-focus":
-                  reverse.length === 1 ? false : tab === i && tab1 === 2,
+                  reverse.length === 1 ? false : tab === i && tab1 === 1,
                 "is-disabled": tab1 === 2,
               })}
               onClick={() => setTab(i)}
@@ -111,7 +113,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
             </li>
           ))}
       </ul>
-      {tab1 === 2 && (
+      {tab1 === 1 && (
         <>
           <div className="mean-area">
             <div className="mean">
@@ -124,6 +126,20 @@ const InfoModal = ({ setOnModal, spreadType }) => {
               </strong>
               {reverse.length === 1 ? stateMean : stateMean[tab]}
             </div>
+          </div>
+
+          <div className="tag">
+            {TabData[0][spreadType].map((item, i) => (
+              <div
+                className={classnames("tag-item", {
+                  "is-select": tab === i,
+                })}
+                key={i}
+                onClick={() => setTab(i)}
+              >
+                {item}
+              </div>
+            ))}
           </div>
 
           {/* {qstn?.question ? (
@@ -177,7 +193,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
           </div>
         </>
       )}
-      {tab1 === 1 && (
+      {tab1 === 2 && (
         <>
           <div className="tag">
             <strong>전체 해석</strong>
