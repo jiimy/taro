@@ -104,9 +104,12 @@ const Header = () => {
           >
             다시 질문하기
           </div>
-          <div className="refresh" onClick={refreshBtn}>
-            다시 고르기
-          </div>
+          {
+            window.location.href.split("/").length > 4 &&
+            <div className="refresh" onClick={refreshBtn}>
+              다시 고르기
+            </div>
+          }
         </div>
       </header>
     </>
