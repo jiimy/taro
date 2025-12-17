@@ -124,7 +124,7 @@ const InfoModal = ({ setOnModal, spreadType }) => {
               <strong>
                 {card.reverseCard[tab] === 1 ? "역방향" : "정방향"}
               </strong>
-              {reverse.length === 1 ? stateMean : stateMean[tab]}
+              {reverse.length === 1 ? stateMean[tab] : stateMean}
             </div>
           </div>
 
